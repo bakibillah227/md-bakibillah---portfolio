@@ -157,17 +157,13 @@ export const FocusAndAchievements: React.FC = () => {
         </div>
 
         {/* PART 2: VERIFIED ACHIEVEMENTS */}
-        <div>
-          <div className="flex items-center justify-between pb-3 mb-6 border-b border-border-subtle">
-            <div>
-              <h3 className="text-lg font-bold text-text-primary">
-                Verified Recognitions & Accomplishments
-              </h3>
-              <p className="text-xs text-text-secondary mt-0.5">
-                Authentic milestones in competitive programming, open source contributions, production exposure, and academic performance.
-              </p>
-            </div>
-            <Badge variant="green" size="sm" className="hidden sm:inline-flex">
+        <div className="flex items-start justify-between gap-4 mb-6">
+            <SectionHeading
+              title="Verified Recognitions & Accomplishments"
+              subtitle="Authentic milestones in competitive programming, open source contributions, production exposure, and academic performance."
+              className="mb-0"
+            />
+            <Badge variant="green" size="sm" className="hidden sm:inline-flex mt-2 shrink-0">
               Verified
             </Badge>
           </div>
