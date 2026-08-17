@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <!-- Light & Dark neutral palettes -->
+    <linearGradient id="ej-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18181b"/>
+      <stop offset="100%" stop-color="#0f0f11"/>
+    </linearGradient>
+    <linearGradient id="ej-card-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#27272a"/>
+      <stop offset="100%" stop-color="#1f1f23"/>
+    </linearGradient>
+    <linearGradient id="ej-accent-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <filter id="ej-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background App Canvas -->
+  <rect width="800" height="500" rx="12" fill="url(#ej-bg)"/>
+
+  <!-- Top App Navigation Bar -->
+  <rect x="0" y="0" width="800" height="48" fill="#141417"/>
+  <line x1="0" y1="48" x2="800" y2="48" stroke="#27272a" stroke-width="1"/>
+
+  <!-- Window controls -->
+  <circle cx="24" cy="24" r="5" fill="#ef4444" opacity="0.85"/>
+  <circle cx="40" cy="24" r="5" fill="#f59e0b" opacity="0.85"/>
+  <circle cx="56" cy="24" r="5" fill="#10b981" opacity="0.85"/>
+
+  <!-- Brand logo / title -->
+  <text x="80" y="29" fill="#f4f4f5" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" letter-spacing="0.5">English Janala</text>
+  <rect x="190" y="16" width="68" height="18" rx="4" fill="#064e3b"/>
+  <text x="198" y="29" fill="#34d399" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600">v2.1 · LIVE</text>
+
+  <!-- Search Input Mockup in Header -->
+  <rect x="520" y="12" width="256" height="26" rx="6" fill="#27272a" stroke="#3f3f46" stroke-width="1"/>
+  <circle cx="536" cy="25" r="4" fill="none" stroke="#a1a1aa" stroke-width="1.5"/>
+  <line x1="539" y1="28" x2="544" y2="33" stroke="#a1a1aa" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="552" y="29" fill="#a1a1aa" font-family="system-ui, -apple-system, sans-serif" font-size="11">Search vocabulary words...</text>
+
+  <!-- Left Sidebar / Lesson Navigation -->
+  <rect x="0" y="48" width="190" height="452" fill="#121215"/>
+  <line x1="190" y1="48" x2="190" y2="500" stroke="#27272a" stroke-width="1"/>
+
+  <text x="20" y="76" fill="#71717a" font-family="monospace" font-size="10" font-weight="600" letter-spacing="1">LESSON MODULES</text>
+
+  <!-- Active Module Item -->
+  <rect x="12" y="90" width="166" height="34" rx="6" fill="#064e3b" stroke="#059669" stroke-width="1"/>
+  <text x="26" y="111" fill="#34d399" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600">Module 01: Core A1-B2</text>
+
+  <!-- Other Module Items -->
+  <rect x="12" y="132" width="166" height="32" rx="6" fill="#18181b"/>
+  <text x="26" y="152" fill="#a1a1aa" font-family="system-ui, -apple-system, sans-serif" font-size="12">Module 02: Daily Verbs</text>
+
+  <rect x="12" y="170" width="166" height="32" rx="6" fill="#18181b"/>
+  <text x="26" y="190" fill="#a1a1aa" font-family="system-ui, -apple-system, sans-serif" font-size="12">Module 03: Workplace</text>
+
+  <rect x="12" y="208" width="166" height="32" rx="6" fill="#18181b"/>
+  <text x="26" y="228" fill="#a1a1aa" font-family="system-ui, -apple-system, sans-serif" font-size="12">Module 04: Idioms</text>
+
+  <!-- Audio Synthesis Badge in Sidebar -->
+  <rect x="12" y="430" width="166" height="50" rx="8" fill="#1f1f23" stroke="#27272a" stroke-width="1"/>
+  <circle cx="28" cy="455" r="10" fill="#064e3b"/>
+  <path d="M25 452v6l5-3z" fill="#34d399"/>
+  <text x="44" y="450" fill="#f4f4f5" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600">Web Speech API</text>
+  <text x="44" y="464" fill="#a1a1aa" font-family="system-ui, -apple-system, sans-serif" font-size="9">Native Audio Synthesis</text>
+
+  <!-- Main Content Area -->
+  <!-- Header Banner -->
+  <rect x="210" y="66" width="566" height="58" rx="8" fill="#1c1c20" stroke="#27272a" stroke-width="1"/>
+  <text x="228" y="93" fill="#f4f4f5" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700">Vocabulary Flashcards & Pronunciation</text>
+  <text x="228" y="111" fill="#a1a1aa" font-family="system-ui, -apple-system, sans-serif" font-size="11">Click speaker to hear pronunciation with instant phonetic feedback</text>
+
+  <!-- Flashcard Grid (2x2) -->
+  <!-- Card 1 -->
+  <g filter="url(#ej-shadow)">
+    <rect x="210" y="140" width="273" height="154" rx="10" fill="url(#ej-card-bg)" stroke="#3f3f46" stroke-width="1"/>
+    <!-- Word header -->
+    <text x="228" y="172" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700">Resilient</text>
+    <text x="228" y="190" fill="#34d399" font-family="monospace" font-size="11">/rɪˈzɪl.jənt/ · adj.</text>
+    <!-- Meaning -->
+    <text x="228" y="214" fill="#d4d4d8" font-family="system-ui, -apple-system, sans-serif" font-size="12">Able to recoil or spring back into shape; recovering quickly.</text>
+    <!-- Action bar -->
+    <line x1="228" y1="250" x2="465" y2="250" stroke="#27272a" stroke-width="1"/>
+    <!-- Pronounce Button -->
+    <rect x="228" y="258" width="105" height="24" rx="5" fill="#10b981"/>
+    <text x="242" y="274" fill="#042f2e" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700">🔊 Pronounce</text>
+    <rect x="340" y="258" width="60" height="24" rx="5" fill="#27272a"/>
+    <text x="350" y="274" fill="#a1a1aa" font-family="system-ui, -apple-system, sans-serif" font-size="10">Example</text>
+  </g>
+
+  <!-- Card 2 -->
+  <g filter="url(#ej-shadow)">
+    <rect x="503" y="140" width="273" height="154" rx="10" fill="url(#ej-card-bg)" stroke="#27272a" stroke-width="1"/>
+    <!-- Word header -->
+    <text x="521" y="172" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700">Eloquent</text>
+    <text x="521" y="190" fill="#38bdf8" font-family="monospace" font-size="11">/ˈel.ə.kwənt/ · adj.</text>
+    <!-- Meaning -->
+    <text x="521" y="214" fill="#d4d4d8" font-family="system-ui, -apple-system, sans-serif" font-size="12">Fluent or persuasive in speaking or writing clearly.</text>
+    <!-- Action bar -->
+    <line x1="521" y1="250" x2="758" y2="250" stroke="#27272a" stroke-width="1"/>
+    <!-- Pronounce Button -->
+    <rect x="521" y="258" width="105" height="24" rx="5" fill="#0284c7"/>
+    <text x="535" y="274" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700">🔊 Pronounce</text>
+    <rect x="633" y="258" width="60" height="24" rx="5" fill="#27272a"/>
+    <text x="643" y="274" fill="#a1a1aa" font-family="system-ui, -apple-system, sans-serif" font-size="10">Example</text>
+  </g>
+
+  <!-- Card 3 -->
+  <g filter="url(#ej-shadow)">
+    <rect x="210" y="310" width="273" height="165" rx="10" fill="url(#ej-card-bg)" stroke="#27272a" stroke-width="1"/>
+    <text x="228" y="342" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700">Pragmatic</text>
+    <text x="228" y="360" fill="#f59e0b" font-family="monospace" font-size="11">/præɡˈmæt.ɪk/ · adj.</text>
+    <text x="228" y="384" fill="#d4d4d8" font-family="system-ui, -apple-system, sans-serif" font-size="12">Dealing with things sensibly and realistically based on practice.</text>
+    <line x1="228" y1="424" x2="465" y2="424" stroke="#27272a" stroke-width="1"/>
+    <rect x="228" y="434" width="105" height="24" rx="5" fill="#d97706"/>
+    <text x="242" y="450" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700">🔊 Pronounce</text>
+  </g>
+
+  <!-- Card 4 -->
+  <g filter="url(#ej-shadow)">
+    <rect x="503" y="310" width="273" height="165" rx="10" fill="url(#ej-card-bg)" stroke="#27272a" stroke-width="1"/>
+    <text x="521" y="342" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700">Synchronous</text>
+    <text x="521" y="360" fill="#a855f7" font-family="monospace" font-size="11">/ˈsɪŋ.krə.nəs/ · adj.</text>
+    <text x="521" y="384" fill="#d4d4d8" font-family="system-ui, -apple-system, sans-serif" font-size="12">Existing or occurring at the same time; simultaneous execution.</text>
+    <line x1="521" y1="424" x2="758" y2="424" stroke="#27272a" stroke-width="1"/>
+    <rect x="521" y="434" width="105" height="24" rx="5" fill="#7e22ce"/>
+    <text x="535" y="450" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700">🔊 Pronounce</text>
+  </g>
+</svg>

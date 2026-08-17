@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="jt-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18181b"/>
+      <stop offset="100%" stop-color="#0f0f11"/>
+    </linearGradient>
+    <linearGradient id="jt-card-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#242428"/>
+      <stop offset="100%" stop-color="#1b1b1e"/>
+    </linearGradient>
+    <filter id="jt-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="500" rx="12" fill="url(#jt-bg)"/>
+
+  <!-- Top App Navigation Bar -->
+  <rect x="0" y="0" width="800" height="48" fill="#141417"/>
+  <line x1="0" y1="48" x2="800" y2="48" stroke="#27272a" stroke-width="1"/>
+
+  <!-- Window dots -->
+  <circle cx="24" cy="24" r="5" fill="#ef4444" opacity="0.85"/>
+  <circle cx="40" cy="24" r="5" fill="#f59e0b" opacity="0.85"/>
+  <circle cx="56" cy="24" r="5" fill="#10b981" opacity="0.85"/>
+
+  <!-- Brand logo / title -->
+  <text x="80" y="29" fill="#f4f4f5" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" letter-spacing="0.5">Job Tracker Pipeline</text>
+  <rect x="236" y="16" width="76" height="18" rx="4" fill="#1e293b"/>
+  <text x="244" y="29" fill="#38bdf8" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600">ANALYTICS</text>
+
+  <!-- Quick Add Application Button -->
+  <rect x="650" y="12" width="130" height="26" rx="6" fill="#10b981"/>
+  <text x="664" y="29" fill="#022c22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700">+ New Application</text>
+
+  <!-- Subheader / Metrics Row (4 Stat Cards) -->
+  <!-- Stat 1: Total Applied -->
+  <g filter="url(#jt-shadow)">
+    <rect x="20" y="64" width="176" height="66" rx="8" fill="url(#jt-card-bg)" stroke="#27272a" stroke-width="1"/>
+    <text x="34" y="85" fill="#a1a1aa" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500">TOTAL APPLIED</text>
+    <text x="34" y="116" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700">48</text>
+    <rect x="135" y="80" width="48" height="18" rx="4" fill="#27272a"/>
+    <text x="142" y="93" fill="#a1a1aa" font-family="monospace" font-size="10">Active</text>
+  </g>
+
+  <!-- Stat 2: In Review -->
+  <g filter="url(#jt-shadow)">
+    <rect x="214" y="64" width="176" height="66" rx="8" fill="url(#jt-card-bg)" stroke="#27272a" stroke-width="1"/>
+    <text x="228" y="85" fill="#38bdf8" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500">IN REVIEW</text>
+    <text x="228" y="116" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700">14</text>
+    <rect x="325" y="80" width="52" height="18" rx="4" fill="#082f49"/>
+    <text x="333" y="93" fill="#38bdf8" font-family="monospace" font-size="10">29.1%</text>
+  </g>
+
+  <!-- Stat 3: Interviews -->
+  <g filter="url(#jt-shadow)">
+    <rect x="408" y="64" width="176" height="66" rx="8" fill="url(#jt-card-bg)" stroke="#27272a" stroke-width="1"/>
+    <text x="422" y="85" fill="#f59e0b" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500">INTERVIEWS</text>
+    <text x="422" y="116" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700">7</text>
+    <rect x="523" y="80" width="48" height="18" rx="4" fill="#451a03"/>
+    <text x="531" y="93" fill="#fbbf24" font-family="monospace" font-size="10">Stage 2</text>
+  </g>
+
+  <!-- Stat 4: Offers -->
+  <g filter="url(#jt-shadow)">
+    <rect x="602" y="64" width="178" height="66" rx="8" fill="url(#jt-card-bg)" stroke="#059669" stroke-width="1"/>
+    <text x="616" y="85" fill="#34d399" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600">OFFERS</text>
+    <text x="616" y="116" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700">2</text>
+    <rect x="715" y="80" width="52" height="18" rx="4" fill="#064e3b"/>
+    <text x="723" y="93" fill="#34d399" font-family="monospace" font-size="10">Final</text>
+  </g>
+
+  <!-- Filter Navigation Bar -->
+  <rect x="20" y="145" width="760" height="38" rx="6" fill="#141417" stroke="#27272a" stroke-width="1"/>
+  <!-- Filter tabs -->
+  <rect x="26" y="150" width="58" height="28" rx="5" fill="#27272a"/>
+  <text x="40" y="168" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600">All (48)</text>
+
+  <text x="104" y="168" fill="#a1a1aa" font-family="system-ui, -apple-system, sans-serif" font-size="12">Active (21)</text>
+  <text x="190" y="168" fill="#a1a1aa" font-family="system-ui, -apple-system, sans-serif" font-size="12">Interviewing (7)</text>
+  <text x="300" y="168" fill="#a1a1aa" font-family="system-ui, -apple-system, sans-serif" font-size="12">Offered (2)</text>
+
+  <!-- Applications Table / Pipeline Board -->
+  <!-- Table Header -->
+  <rect x="20" y="195" width="760" height="32" rx="4" fill="#1c1c20"/>
+  <text x="36" y="215" fill="#71717a" font-family="monospace" font-size="10" font-weight="600">COMPANY / POSITION</text>
+  <text x="320" y="215" fill="#71717a" font-family="monospace" font-size="10" font-weight="600">SALARY / RANGE</text>
+  <text x="480" y="215" fill="#71717a" font-family="monospace" font-size="10" font-weight="600">STATUS</text>
+  <text x="630" y="215" fill="#71717a" font-family="monospace" font-size="10" font-weight="600">DATE</text>
+  <text x="730" y="215" fill="#71717a" font-family="monospace" font-size="10" font-weight="600">ACTION</text>
+
+  <!-- Row 1 (Offered) -->
+  <rect x="20" y="235" width="760" height="54" rx="6" fill="#1f1f23" stroke="#27272a" stroke-width="1"/>
+  <!-- Company initial avatar -->
+  <circle cx="50" cy="262" r="14" fill="#064e3b"/>
+  <text x="44" y="267" fill="#34d399" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700">G</text>
+  <text x="76" y="256" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">Global Cloud Tech</text>
+  <text x="76" y="274" fill="#a1a1aa" font-family="system-ui, -apple-system, sans-serif" font-size="11">Full-Stack Engineer · Remote</text>
+  <text x="320" y="266" fill="#d4d4d8" font-family="system-ui, -apple-system, sans-serif" font-size="12">$90k - $110k</text>
+  <!-- Status Badge -->
+  <rect x="480" y="250" width="82" height="24" rx="12" fill="#064e3b" stroke="#059669" stroke-width="1"/>
+  <text x="496" y="266" fill="#34d399" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600">Offered</text>
+  <text x="630" y="266" fill="#a1a1aa" font-family="monospace" font-size="11">Oct 12</text>
+  <text x="734" y="266" fill="#71717a" font-family="system-ui, -apple-system, sans-serif" font-size="14">⋮</text>
+
+  <!-- Row 2 (Interviewing) -->
+  <rect x="20" y="297" width="760" height="54" rx="6" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+  <circle cx="50" cy="324" r="14" fill="#451a03"/>
+  <text x="44" y="329" fill="#fbbf24" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700">N</text>
+  <text x="76" y="318" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">Nexora Systems</text>
+  <text x="76" y="336" fill="#a1a1aa" font-family="system-ui, -apple-system, sans-serif" font-size="11">Backend Developer · Hybrid</text>
+  <text x="320" y="328" fill="#d4d4d8" font-family="system-ui, -apple-system, sans-serif" font-size="12">$85k - $95k</text>
+  <rect x="480" y="312" width="105" height="24" rx="12" fill="#451a03" stroke="#d97706" stroke-width="1"/>
+  <text x="494" y="328" fill="#fbbf24" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600">Interview Tech</text>
+  <text x="630" y="328" fill="#a1a1aa" font-family="monospace" font-size="11">Oct 10</text>
+  <text x="734" y="328" fill="#71717a" font-family="system-ui, -apple-system, sans-serif" font-size="14">⋮</text>
+
+  <!-- Row 3 (In Review) -->
+  <rect x="20" y="359" width="760" height="54" rx="6" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+  <circle cx="50" cy="386" r="14" fill="#082f49"/>
+  <text x="45" y="391" fill="#38bdf8" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700">S</text>
+  <text x="76" y="380" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">ScaleFlow AI</text>
+  <text x="76" y="398" fill="#a1a1aa" font-family="system-ui, -apple-system, sans-serif" font-size="11">Software Engineer · Remote</text>
+  <text x="320" y="390" fill="#d4d4d8" font-family="system-ui, -apple-system, sans-serif" font-size="12">$95k - $120k</text>
+  <rect x="480" y="374" width="86" height="24" rx="12" fill="#082f49" stroke="#0284c7" stroke-width="1"/>
+  <text x="496" y="390" fill="#38bdf8" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600">In Review</text>
+  <text x="630" y="390" fill="#a1a1aa" font-family="monospace" font-size="11">Oct 08</text>
+  <text x="734" y="390" fill="#71717a" font-family="system-ui, -apple-system, sans-serif" font-size="14">⋮</text>
+
+  <!-- Row 4 (Applied) -->
+  <rect x="20" y="421" width="760" height="54" rx="6" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+  <circle cx="50" cy="448" r="14" fill="#27272a"/>
+  <text x="44" y="453" fill="#e4e4e7" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700">V</text>
+  <text x="76" y="442" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">VectorLabs</text>
+  <text x="76" y="460" fill="#a1a1aa" font-family="system-ui, -apple-system, sans-serif" font-size="11">Frontend Developer · Remote</text>
+  <text x="320" y="452" fill="#d4d4d8" font-family="system-ui, -apple-system, sans-serif" font-size="12">$80k - $90k</text>
+  <rect x="480" y="436" width="76" height="24" rx="12" fill="#27272a"/>
+  <text x="496" y="452" fill="#a1a1aa" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500">Applied</text>
+  <text x="630" y="452" fill="#a1a1aa" font-family="monospace" font-size="11">Oct 05</text>
+  <text x="734" y="452" fill="#71717a" font-family="system-ui, -apple-system, sans-serif" font-size="14">⋮</text>
+</svg>
