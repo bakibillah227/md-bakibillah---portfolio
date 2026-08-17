@@ -177,7 +177,7 @@ export const Header: React.FC = () => {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
             id="mobile-navigation"
-            className="md:hidden fixed inset-x-0 top-[65px] bg-surface-primary/95 backdrop-blur-xl border-b border-border-subtle shadow-lg z-40"
+            className="md:hidden absolute top-full inset-x-0 bg-surface-primary/95 backdrop-blur-xl border-b border-border-subtle shadow-lg z-40 max-h-[calc(100dvh-64px)] overflow-y-auto overscroll-contain"
           >
             <Container size="lg" className="py-6">
               <nav className="flex flex-col space-y-2" aria-label="Mobile Navigation">

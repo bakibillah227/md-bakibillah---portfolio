@@ -42,7 +42,7 @@ export const Preloader: React.FC = () => {
     <motion.div
       exit={{ opacity: 0, y: -24 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-surface-primary font-mono p-4"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-surface-primary font-mono p-4 overflow-hidden"
       aria-label="Loading Md Bakibillah portfolio"
     >
       {/* Subtle ambient glow matching the portfolio's accent */}
