@@ -87,9 +87,9 @@ export const Header: React.FC = () => {
             aria-label="Md Bakibillah Portfolio - Back to top"
           >
             <div className="w-8 h-8 rounded-full overflow-hidden border border-border-strong bg-surface-secondary shrink-0 shadow-2xs group-hover:border-text-primary group-hover:scale-105 transition-all">
-              {personalData.avatarUrl ? (
+              {personalData.profileIconUrl ? (
                 <img
-                  src={personalData.avatarUrl}
+                  src={personalData.profileIconUrl}
                   alt={personalData.name}
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"

@@ -156,7 +156,7 @@ export const Hero: React.FC = () => {
             >
               <div className="relative group w-full max-w-[290px] sm:max-w-[350px] lg:max-w-[390px] xl:max-w-[420px]">
                 {/* Clean framing card */}
-                <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-border-strong/80 bg-surface-card shadow-xs group-hover:border-border-strong transition-all duration-300 aspect-square">
+                <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-border-strong/80 bg-surface-card shadow-xs group-hover:border-border-strong transition-all duration-300 aspect-[3/4]">
                   {personalData.avatarUrl ? (
                     <img
                       src={personalData.avatarUrl}

@@ -20,6 +20,7 @@ export interface PersonalInfo {
   headline: string;
   bio: string[];
   avatarUrl?: string;
+  profileIconUrl?: string;
   location: {
     city: string;
     country: string;

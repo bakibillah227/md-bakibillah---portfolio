@@ -1,11 +1,13 @@
 import { PersonalInfo, NavItem } from '../types';
 import profileImg from '../assets/profile.png';
+import profileIcon from '../assets/profile_icon.jpg';
 
 export const personalData: PersonalInfo = {
   name: 'Md Bakibillah',
   title: 'Software Engineer · Full-Stack MERN Developer',
   headline: 'Building scalable, reliable, user-focused web applications using modern JavaScript technologies, with a growing focus on backend engineering, system design, and AI-powered products.',
   avatarUrl: profileImg,
+  profileIconUrl: profileIcon,
   bio: [
     'I am a Software Engineer passionate about building scalable, high-quality web applications with the MERN Stack.',
     'I have practical experience with backend development, RESTful API design, authentication, database architecture, and clean software engineering practices.',
