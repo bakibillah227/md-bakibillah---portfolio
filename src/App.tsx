@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { AnimatePresence } from 'motion/react';
 import { ThemeProvider } from './context/ThemeContext';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
+import { Preloader } from './components/layout/Preloader';
 import { Hero } from './sections/Hero';
 import { About } from './sections/About';
 import { Capabilities } from './sections/Capabilities';
@@ -12,9 +14,24 @@ import { Activity } from './sections/Activity';
 import { Contact } from './sections/Contact';
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const reduced =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const timer = setTimeout(() => setIsLoading(false), reduced ? 500 : 1900);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <ThemeProvider>
       <div className="min-h-screen flex flex-col bg-surface-primary text-text-primary selection:bg-accent-green/20 selection:text-text-primary">
+        {/* Boot Sequence Preloader */}
+        <AnimatePresence mode="wait">
+          {isLoading && <Preloader key="preloader" />}
+        </AnimatePresence>
+
         {/* Skip to Main Content for Screen Readers & Keyboard Navigation */}
         <a
           href="#main-content"

@@ -9,7 +9,7 @@ export const Contact: React.FC = () => {
   return (
     <section
       id="contact"
-      className="py-20 sm:py-28 lg:py-32 scroll-mt-20 border-t border-border-subtle/60"
+      className="py-14 sm:py-16 lg:py-20 scroll-mt-20 border-t border-border-subtle/60"
       aria-label="Contact and Collaboration"
     >
       <Container size="lg">

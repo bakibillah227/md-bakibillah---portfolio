@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="border-t border-border-subtle bg-surface-secondary/40 py-12 mt-20" aria-label="Site Footer">
+    <footer className="border-t border-border-subtle bg-surface-secondary/40 py-12 mt-10" aria-label="Site Footer">
       <Container size="lg">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-8 items-start">
           {/* Identity & Mission (5 Cols) */}
