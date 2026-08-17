@@ -1,5 +1,5 @@
 import { PersonalInfo, NavItem } from '../types';
-import profileImg from '../assets/profile.jpg';
+import profileImg from '../assets/profile.png';
 
 export const personalData: PersonalInfo = {
   name: 'Md Bakibillah',
