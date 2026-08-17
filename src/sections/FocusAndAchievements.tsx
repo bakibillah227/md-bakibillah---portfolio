@@ -157,7 +157,8 @@ export const FocusAndAchievements: React.FC = () => {
         </div>
 
         {/* PART 2: VERIFIED ACHIEVEMENTS */}
-        <div className="flex items-start justify-between gap-4 mb-6">
+        <div>
+          <div className="flex items-start justify-between gap-4 mb-6">
             <SectionHeading
               title="Verified Recognitions & Accomplishments"
               subtitle="Authentic milestones in competitive programming, open source contributions, production exposure, and academic performance."
