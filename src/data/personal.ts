@@ -61,7 +61,7 @@ export const personalData: PersonalInfo = {
         ariaLabel: 'Send an Email'
       }
     ],
-    resumeUrl: '#'
+    resumeUrl: 'https://drive.google.com/file/d/1eRHZQKgaMkmOTQlqdU4AxfOXo1qodvFy/view?usp=sharing'
   },
   focusAreas: [
     'Backend engineering',
