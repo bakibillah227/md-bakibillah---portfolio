@@ -11,7 +11,6 @@ import {
 } from 'lucide-react';
 import { Container } from '../components/common/Container';
 import { Card } from '../components/common/Card';
-import { Badge } from '../components/common/Badge';
 import { Button } from '../components/common/Button';
 import { SectionHeading } from '../components/common/SectionHeading';
 import { useGithubActivity } from '../hooks/useGithubActivity';
@@ -310,7 +309,16 @@ export const Activity: React.FC = () => {
                   </div>
                 </div>
 
-                <Badge variant="orange" size="sm">Active Practice</Badge>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  href="https://leetcode.com/u/nexorithm/"
+                  isExternal
+                  icon={<ExternalLink className="w-3.5 h-3.5" />}
+                  iconPosition="right"
+                >
+                  View Profile
+                </Button>
               </div>
 
               {/* Dynamic Content / Skeleton / Fallback */}
@@ -453,21 +461,6 @@ export const Activity: React.FC = () => {
                   </div>
                 </div>
               )}
-
-              {/* Link CTA */}
-              <div className="pt-2 border-t border-border-subtle/80">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  href="https://leetcode.com/u/nexorithm/"
-                  isExternal
-                  icon={<ExternalLink className="w-3.5 h-3.5" />}
-                  iconPosition="right"
-                  className="w-full justify-center"
-                >
-                  View LeetCode Profile (@nexorithm)
-                </Button>
-              </div>
             </Card>
           </div>
         </div>
