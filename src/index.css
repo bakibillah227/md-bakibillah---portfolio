@@ -1,7 +1,10 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
+    color-scheme: light;
     --bg-primary: #FAF9F6;
     --bg-secondary: #F2F1EC;
     --bg-tertiary: #E8E7E0;
@@ -18,6 +21,7 @@
   }
 
   .dark {
+    color-scheme: dark;
     --bg-primary: #121413;
     --bg-secondary: #191D1B;
     --bg-tertiary: #222724;
@@ -34,7 +38,6 @@
   }
 
   html {
-    color-scheme: light dark;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;

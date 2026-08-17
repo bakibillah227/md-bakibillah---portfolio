@@ -3,6 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('mb_portfolio_theme');
+          var resolved = 'light';
+          if (saved === 'dark' || saved === 'light') {
+            resolved = saved;
+          } else if (saved === 'system') {
+            resolved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          if (resolved === 'dark') {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
     <title>Md Bakibillah</title>
     <link rel="icon" type="image/png" href="/src/assets/website_icon.png" />
     <meta
