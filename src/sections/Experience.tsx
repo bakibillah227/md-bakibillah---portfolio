@@ -17,7 +17,7 @@ import { SectionHeading } from '../components/common/SectionHeading';
 
 export const Experience: React.FC = () => {
   return (
-    <section id="experience" className="py-16 sm:py-24 scroll-mt-20 border-t border-border-subtle/60" aria-label="Experience and Education">
+    <section id="experience" className="py-14 sm:py-16 lg:py-20 scroll-mt-20 border-t border-border-subtle/60" aria-label="Experience and Education">
       <Container size="lg">
         <SectionHeading
           title="Experience & Education"

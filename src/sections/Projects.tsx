@@ -22,7 +22,7 @@ export const Projects: React.FC = () => {
     setExpandedProjectId((prev) => (prev === id ? null : id));
 
   return (
-    <section id="projects" className="py-16 sm:py-24 scroll-mt-20 border-t border-border-subtle/60" aria-label="Selected Projects">
+    <section id="projects" className="py-14 sm:py-16 lg:py-20 scroll-mt-20 border-t border-border-subtle/60" aria-label="Selected Projects">
       <Container size="lg">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <SectionHeading

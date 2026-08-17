@@ -67,7 +67,7 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative pt-6 pb-16 sm:pt-12 sm:pb-24 lg:pt-16 lg:pb-28 overflow-hidden"
+      className="relative pt-6 pb-12 sm:pt-12 sm:pb-16 lg:pt-16 lg:pb-20 overflow-hidden"
       aria-label="Hero Introduction"
     >
       {/* Subtle background ambient texture */}

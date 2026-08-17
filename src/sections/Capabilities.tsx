@@ -26,7 +26,7 @@ const capabilityIcons: Record<string, React.ReactNode> = {
 
 export const Capabilities: React.FC = () => {
   return (
-    <section id="capabilities" className="py-16 sm:py-20 scroll-mt-20 border-t border-border-subtle/60" aria-label="Engineering Capabilities">
+    <section id="capabilities" className="py-14 sm:py-16 lg:py-20 scroll-mt-20 border-t border-border-subtle/60" aria-label="Engineering Capabilities">
       <Container size="lg">
         <SectionHeading
           title="Engineering Capabilities & Competencies"

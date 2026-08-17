@@ -35,10 +35,10 @@ export const FocusAndAchievements: React.FC = () => {
   const handleToggleAchievement = (id: string) =>
     setExpandedAchievementId((prev) => (prev === id ? null : id));
   return (
-    <section id="focus-achievements" className="py-16 sm:py-24 scroll-mt-20 border-t border-border-subtle/60" aria-label="Current Focus and Verified Achievements">
+    <section id="focus-achievements" className="py-14 sm:py-16 lg:py-20 scroll-mt-20 border-t border-border-subtle/60" aria-label="Current Focus and Verified Achievements">
       <Container size="lg">
         {/* PART 1: CURRENT FOCUS (Current -> Learning -> Goals) */}
-        <div className="mb-20">
+        <div className="mb-14">
           <SectionHeading
             title="Current Technical Focus & Roadmap"
             subtitle="Transparent progression separating what I am actively building today, deep dive engineering topics under study, and forward professional milestones."

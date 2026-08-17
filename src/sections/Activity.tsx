@@ -85,7 +85,7 @@ export const Activity: React.FC = () => {
   return (
     <section
       id="activity"
-      className="py-16 sm:py-24 scroll-mt-20 border-t border-border-subtle/60"
+      className="py-14 sm:py-16 lg:py-20 scroll-mt-20 border-t border-border-subtle/60"
       aria-label="Developer and Problem Solving Activity"
     >
       <Container size="lg">

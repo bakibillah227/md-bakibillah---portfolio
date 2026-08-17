@@ -27,7 +27,7 @@ const growthIcons: Record<string, React.ReactNode> = {
 
 export const About: React.FC = () => {
   return (
-    <section id="about" className="py-16 sm:py-24 scroll-mt-20" aria-label="About Md Bakibillah">
+    <section id="about" className="py-14 sm:py-16 lg:py-20 scroll-mt-20" aria-label="About Md Bakibillah">
       <Container size="lg">
         <SectionHeading
           title="About & Engineering Mindset"
