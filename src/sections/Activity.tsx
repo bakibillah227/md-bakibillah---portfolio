@@ -94,10 +94,10 @@ export const Activity: React.FC = () => {
           subtitle="Continuous practice across GitHub open-source repositories and algorithmic problem solving on LeetCode."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Column 1: Dynamic GitHub Contribution & Activity - 7 Cols */}
-          <div className="lg:col-span-7 space-y-6">
-            <Card className="bg-surface-card border-border-subtle hover:border-border-strong transition-all duration-200 p-6 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          {/* Column 1: Dynamic GitHub Contribution & Activity - 6 Cols */}
+          <div className="lg:col-span-6 space-y-6">
+            <Card className="bg-surface-card border-border-subtle hover:border-border-strong transition-all duration-200 p-6 space-y-6 h-full">
               {/* Card Header */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-border-subtle">
                 <div className="flex items-center gap-3">
@@ -290,9 +290,9 @@ export const Activity: React.FC = () => {
             </Card>
           </div>
 
-          {/* Column 2: Dynamic LeetCode & Problem Solving - 5 Cols */}
-          <div className="lg:col-span-5 space-y-6">
-            <Card className="bg-surface-card border-border-subtle hover:border-border-strong transition-all duration-200 p-6 space-y-5">
+          {/* Column 2: Dynamic LeetCode & Problem Solving - 6 Cols */}
+          <div className="lg:col-span-6 space-y-6">
+            <Card className="bg-surface-card border-border-subtle hover:border-border-strong transition-all duration-200 p-6 space-y-5 h-full">
               {/* Header */}
               <div className="flex items-center justify-between pb-4 border-b border-border-subtle">
                 <div className="flex items-center gap-2.5">
