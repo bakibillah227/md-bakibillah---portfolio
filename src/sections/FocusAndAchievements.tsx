@@ -172,7 +172,7 @@ export const FocusAndAchievements: React.FC = () => {
             </Badge>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="space-y-4">
             {verifiedAchievements.map((item) => {
               const isGreen = item.category === 'Production Exposure' || item.category === 'Open Source';
               const icon = achievementCategoryIcons[item.category] || <Award className="w-4 h-4 text-accent-green" />;
