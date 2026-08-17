@@ -8,6 +8,7 @@ import { Button } from '../components/common/Button';
 
 export const Projects: React.FC = () => {
   const [selectedFilter, setSelectedFilter] = useState<string>('All');
+  const [expandedProjectId, setExpandedProjectId] = useState<string | null>(null);
 
   const categories = ['All', 'Educational Web Application', 'Productivity Web Application'];
 
@@ -15,6 +16,10 @@ export const Projects: React.FC = () => {
     selectedFilter === 'All'
       ? projectsData
       : projectsData.filter((p) => p.category === selectedFilter);
+
+  const handleExpand = (id: string) => setExpandedProjectId(id);
+  const handleToggle = (id: string) =>
+    setExpandedProjectId((prev) => (prev === id ? null : id));
 
   return (
     <section id="projects" className="py-16 sm:py-24 scroll-mt-20 border-t border-border-subtle/60" aria-label="Selected Projects">
@@ -51,6 +56,9 @@ export const Projects: React.FC = () => {
               key={project.id}
               project={project}
               index={idx}
+              expanded={expandedProjectId === project.id}
+              onExpand={() => handleExpand(project.id)}
+              onToggle={() => handleToggle(project.id)}
             />
           ))}
         </div>
