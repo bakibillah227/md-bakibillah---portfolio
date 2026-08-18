@@ -28,6 +28,90 @@ let cachedLeetCodeData: LeetCodeProfileData | null = null;
 let lastFetchTime = 0;
 const CACHE_DURATION_MS = 10 * 60 * 1000; // 10 minutes
 
+const LEETCODE_GRAPHQL_URL = 'https://leetcode.com/graphql';
+
+const PROFILE_QUERY = `
+query userPublicProfile($username: String!, $limit: Int!) {
+  matchedUser(username: $username) {
+    profile {
+      ranking
+      reputation
+    }
+    submitStats {
+      acSubmissionNum { difficulty count }
+    }
+  }
+  allQuestionsCount { difficulty count }
+  recentAcSubmissionList(username: $username, limit: $limit) {
+    title
+    titleSlug
+    timestamp
+    statusDisplay
+    lang
+  }
+}`;
+
+function pickCount(list: { difficulty: string; count: number }[] | undefined, difficulty: string): number {
+  if (!Array.isArray(list)) return 0;
+  const entry = list.find((item) => item.difficulty === difficulty);
+  return typeof entry?.count === 'number' ? entry.count : 0;
+}
+
+function normalizeLeetCodeData(payload: unknown): LeetCodeProfileData | null {
+  const root = (payload as { data?: Record<string, unknown> } | null)?.data;
+
+  // Legacy flat response shape (e.g. some third-party endpoints return this)
+  const flat = payload as Partial<LeetCodeProfileData> | null;
+  if (flat && typeof flat.totalSolved === 'number' && !root?.matchedUser) {
+    return {
+      totalSolved: flat.totalSolved,
+      easySolved: flat.easySolved ?? 0,
+      mediumSolved: flat.mediumSolved ?? 0,
+      hardSolved: flat.hardSolved ?? 0,
+      totalQuestions: flat.totalQuestions,
+      totalEasy: flat.totalEasy,
+      totalMedium: flat.totalMedium,
+      totalHard: flat.totalHard,
+      ranking: flat.ranking,
+      contributionPoint: flat.contributionPoint,
+      reputation: flat.reputation,
+      submissionCalendar: flat.submissionCalendar,
+      recentSubmissions: Array.isArray(flat.recentSubmissions) ? flat.recentSubmissions : []
+    };
+  }
+
+  const matchedUser = (root?.matchedUser ?? null) as {
+    profile?: { ranking?: number; reputation?: number };
+    submitStats?: { acSubmissionNum?: { difficulty: string; count: number }[] };
+  } | null;
+  const allQuestionsCount = (root?.allQuestionsCount ?? []) as {
+    difficulty: string;
+    count: number;
+  }[];
+  const recent = (root?.recentAcSubmissionList ?? []) as LeetCodeSubmission[];
+
+  const ac = matchedUser?.submitStats?.acSubmissionNum;
+
+  const normalized: LeetCodeProfileData = {
+    totalSolved: pickCount(ac, 'All'),
+    easySolved: pickCount(ac, 'Easy'),
+    mediumSolved: pickCount(ac, 'Medium'),
+    hardSolved: pickCount(ac, 'Hard'),
+    totalQuestions: pickCount(allQuestionsCount, 'All'),
+    totalEasy: pickCount(allQuestionsCount, 'Easy'),
+    totalMedium: pickCount(allQuestionsCount, 'Medium'),
+    totalHard: pickCount(allQuestionsCount, 'Hard'),
+    ranking: matchedUser?.profile?.ranking,
+    reputation: matchedUser?.profile?.reputation,
+    recentSubmissions: Array.isArray(recent) ? recent.slice(0, 5) : []
+  };
+
+  if (typeof normalized.totalSolved === 'number') {
+    return normalized;
+  }
+  return null;
+}
+
 export function useLeetCodeActivity(username = 'nexorithm') {
   const [data, setData] = useState<LeetCodeProfileData | null>(cachedLeetCodeData);
   const [loading, setLoading] = useState<boolean>(!cachedLeetCodeData);
@@ -50,8 +134,15 @@ export function useLeetCodeActivity(username = 'nexorithm') {
         setLoading(true);
         setHasError(false);
 
-        // Fetch from reliable public CORS-friendly endpoint
-        const res = await fetch(`https://alfa-leetcode-api.onrender.com/userProfile/${username}`, {
+        const res = await fetch(LEETCODE_GRAPHQL_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            query: PROFILE_QUERY,
+            variables: { username, limit: 5 }
+          }),
           signal: controller.signal
         });
 
@@ -61,29 +152,13 @@ export function useLeetCodeActivity(username = 'nexorithm') {
           throw new Error(`LeetCode API error: ${res.status}`);
         }
 
-        const json = await res.json();
+        const json = normalizeLeetCodeData(await res.json());
 
         if (isMounted) {
           if (json && typeof json.totalSolved === 'number') {
-            const normalized: LeetCodeProfileData = {
-              totalSolved: json.totalSolved,
-              easySolved: json.easySolved ?? 0,
-              mediumSolved: json.mediumSolved ?? 0,
-              hardSolved: json.hardSolved ?? 0,
-              totalQuestions: json.totalQuestions,
-              totalEasy: json.totalEasy,
-              totalMedium: json.totalMedium,
-              totalHard: json.totalHard,
-              ranking: json.ranking,
-              contributionPoint: json.contributionPoint,
-              reputation: json.reputation,
-              submissionCalendar: json.submissionCalendar,
-              recentSubmissions: Array.isArray(json.recentSubmissions) ? json.recentSubmissions : []
-            };
-
-            cachedLeetCodeData = normalized;
+            cachedLeetCodeData = json;
             lastFetchTime = Date.now();
-            setData(normalized);
+            setData(json);
           } else {
             setHasError(true);
           }
