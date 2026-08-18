@@ -12,6 +12,8 @@ export const educationData: Education[] = [
       expectedGraduation: '2028'
     },
     academicStanding: '3.80+ CGPA',
+    summary:
+      'Pursuing a Bachelor of Science in Computer Science & Engineering with strong academic standing, building a rigorous foundation in software development, algorithms, and database systems.',
     honors: [
       "Dean's List (Recognized for Academic Performance)",
       'Academic Excellence Award'

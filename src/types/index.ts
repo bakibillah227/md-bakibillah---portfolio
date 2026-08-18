@@ -120,6 +120,7 @@ export interface Education {
     expectedGraduation: string;
   };
   academicStanding?: string;
+  summary?: string;
   relevantCoursework?: string[];
   honors?: string[];
 }

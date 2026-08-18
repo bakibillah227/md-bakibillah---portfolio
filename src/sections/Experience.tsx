@@ -4,9 +4,7 @@ import {
   GraduationCap,
   Calendar,
   MapPin,
-  CheckCircle2,
-  Award,
-  BookOpen
+  CheckCircle2
 } from 'lucide-react';
 import { experienceData } from '../data/experience';
 import { educationData } from '../data/education';
@@ -136,14 +134,16 @@ export const Experience: React.FC = () => {
             {educationData.map((edu) => (
               <Card
                 key={edu.id}
-                className="bg-surface-card border-border-subtle hover:border-border-strong hover:-translate-y-0.5 hover:shadow-2xs transition-all duration-200 space-y-5 p-5 sm:p-6 motion-reduce:transform-none group"
+                className="bg-surface-card border-border-subtle hover:border-border-strong hover:-translate-y-0.5 hover:shadow-2xs transition-all duration-200 p-5 sm:p-6 space-y-4 motion-reduce:transform-none group"
               >
+                {/* Header */}
                 <div>
-                  <div className="flex items-center justify-between gap-2 mb-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
                     <Badge variant="orange" size="sm">
                       {edu.academicStanding}
                     </Badge>
-                    <span className="text-xs font-mono text-text-tertiary">
+                    <span className="text-xs font-mono text-text-tertiary flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5" />
                       {edu.period.startYear} — Expected {edu.period.expectedGraduation}
                     </span>
                   </div>
@@ -151,44 +151,52 @@ export const Experience: React.FC = () => {
                   <h4 className="text-base sm:text-lg font-bold text-text-primary group-hover:text-accent-orange transition-colors">
                     {edu.degree}
                   </h4>
-                  <div className="text-xs font-medium text-text-secondary mt-0.5">
-                    {edu.field}
-                  </div>
-                  <div className="text-xs text-text-tertiary mt-0.5">
-                    {edu.institution} · {edu.location}
+
+                  <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-accent-orange-dark dark:text-accent-orange mt-0.5">
+                    <span className="font-semibold">{edu.field}</span>
+                    <span className="text-text-tertiary">·</span>
+                    <span className="text-text-tertiary flex items-center gap-1">
+                      <MapPin className="w-3 h-3" />
+                      {edu.institution}, {edu.location}
+                    </span>
                   </div>
                 </div>
 
-                {/* Academic Honors */}
+                {/* Summary */}
+                {edu.summary && (
+                  <p className="text-xs sm:text-sm text-text-secondary leading-relaxed font-normal">
+                    {edu.summary}
+                  </p>
+                )}
+
+                {/* Academic Recognition */}
                 {edu.honors && edu.honors.length > 0 && (
-                  <div className="p-3.5 rounded-lg bg-surface-secondary/60 border border-border-subtle space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-semibold text-text-primary">
-                      <Award className="w-3.5 h-3.5 text-accent-orange" />
-                      <span>Academic Recognition</span>
-                    </div>
-                    <ul className="space-y-1 text-xs text-text-secondary">
+                  <div className="space-y-2 pt-1">
+                    <h5 className="text-[11px] font-mono font-semibold uppercase tracking-wider text-text-tertiary">
+                      Key Academic Achievements & Recognition
+                    </h5>
+                    <ul className="space-y-1.5 text-xs text-text-secondary">
                       {edu.honors.map((honor, idx) => (
-                        <li key={idx} className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-accent-orange" />
-                          <span>{honor}</span>
+                        <li key={idx} className="flex items-start gap-2">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-accent-orange shrink-0 mt-0.5" />
+                          <span className="leading-relaxed">{honor}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                 )}
 
-                {/* Relevant Coursework */}
+                {/* Core Computer Science Topics */}
                 {edu.relevantCoursework && (
-                  <div className="space-y-2 pt-2 border-t border-border-subtle">
-                    <div className="flex items-center gap-1.5 text-[11px] font-mono font-semibold uppercase tracking-wider text-text-tertiary">
-                      <BookOpen className="w-3 h-3" />
-                      <span>Key Computer Science Topics</span>
-                    </div>
+                  <div className="pt-3 border-t border-border-subtle">
+                    <span className="text-[11px] font-mono text-text-tertiary uppercase tracking-wider block mb-2">
+                      Core Computer Science Topics:
+                    </span>
                     <div className="flex flex-wrap gap-1.5">
                       {edu.relevantCoursework.map((course) => (
                         <span
                           key={course}
-                          className="text-[11px] px-2.5 py-1 rounded-md bg-surface-secondary text-text-secondary border border-border-subtle"
+                          className="text-[11px] font-mono px-2 py-0.5 rounded bg-surface-secondary text-text-primary border border-border-subtle"
                         >
                           {course}
                         </span>
