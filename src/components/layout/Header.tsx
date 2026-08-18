@@ -22,6 +22,7 @@ export const Header: React.FC = () => {
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
+        if (!section) continue;
         const el = document.getElementById(section);
         if (el) {
           const top = el.offsetTop;

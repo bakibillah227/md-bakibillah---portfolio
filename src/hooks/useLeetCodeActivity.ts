@@ -89,8 +89,11 @@ export function useLeetCodeActivity(username = 'nexorithm') {
           }
           setLoading(false);
         }
-      } catch (err: any) {
-        if (isMounted && err.name !== 'AbortError') {
+      } catch (err) {
+        if (isMounted && err instanceof DOMException && err.name === 'AbortError') {
+          return;
+        }
+        if (isMounted) {
           setHasError(true);
           setLoading(false);
         }
@@ -114,7 +117,6 @@ export function useLeetCodeActivity(username = 'nexorithm') {
     easySolved: data?.easySolved ?? null,
     mediumSolved: data?.mediumSolved ?? null,
     hardSolved: data?.hardSolved ?? null,
-    recentSubmissions: data?.recentSubmissions ?? [],
-    ranking: data?.ranking ?? null
+    recentSubmissions: data?.recentSubmissions ?? []
   };
 }

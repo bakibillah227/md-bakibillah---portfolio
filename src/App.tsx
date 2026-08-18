@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { ThemeProvider } from './context/ThemeContext';
+import { ErrorBoundary } from './components/common/ErrorBoundary';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { Preloader } from './components/layout/Preloader';
@@ -26,6 +27,7 @@ export default function App() {
 
   return (
     <ThemeProvider>
+      <ErrorBoundary>
       <div className="min-h-screen flex flex-col bg-surface-primary text-text-primary selection:bg-accent-green/20 selection:text-text-primary">
         {/* Boot Sequence Preloader */}
         <AnimatePresence mode="wait">
@@ -73,6 +75,7 @@ export default function App() {
         {/* Minimal Professional Footer */}
         <Footer />
       </div>
+      </ErrorBoundary>
     </ThemeProvider>
   );
 }

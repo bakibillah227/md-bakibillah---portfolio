@@ -64,8 +64,11 @@ export function useGithubActivity(username = 'bakibillah227') {
           }
           setLoading(false);
         }
-      } catch (err: any) {
-        if (isMounted && err.name !== 'AbortError') {
+      } catch (err) {
+        if (isMounted && err instanceof DOMException && err.name === 'AbortError') {
+          return;
+        }
+        if (isMounted) {
           setHasError(true);
           setLoading(false);
         }

@@ -10,12 +10,12 @@ import {
   CheckCircle2,
   GitBranch
 } from 'lucide-react';
-import { motion } from 'motion/react';
 import { personalData } from '../data/personal';
 import { Container } from '../components/common/Container';
 import { Card } from '../components/common/Card';
 import { Badge } from '../components/common/Badge';
 import { SectionHeading } from '../components/common/SectionHeading';
+import { Reveal } from '../components/common/Reveal';
 
 const growthIcons: Record<string, React.ReactNode> = {
   'Backend engineering': <Server className="w-4 h-4 text-accent-green" />,
@@ -34,7 +34,7 @@ export const About: React.FC = () => {
           subtitle="How I approach building software, technical problem-solving, and continuous engineering growth."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Main Narrative - 7 Columns */}
           <div className="lg:col-span-7 space-y-6">
             <div className="space-y-4 text-sm sm:text-base text-text-secondary leading-relaxed font-normal">
@@ -108,7 +108,7 @@ export const About: React.FC = () => {
               </ul>
             </Card>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

@@ -6,7 +6,6 @@ import {
   Layout,
   Cpu,
   GitBranch,
-  ShieldCheck,
   Layers,
   Check
 } from 'lucide-react';
@@ -14,6 +13,7 @@ import { capabilitiesData } from '../data/capabilities';
 import { Container } from '../components/common/Container';
 import { Card } from '../components/common/Card';
 import { SectionHeading } from '../components/common/SectionHeading';
+import { Reveal } from '../components/common/Reveal';
 
 const capabilityIcons: Record<string, React.ReactNode> = {
   'cap-fullstack': <Layers className="w-4 h-4 text-accent-green" />,
@@ -33,7 +33,7 @@ export const Capabilities: React.FC = () => {
           subtitle="Evidence-based overview of technical capabilities across full-stack architecture, API design, database systems, and problem solving."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Reveal className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {capabilitiesData.map((cap) => {
             const icon = capabilityIcons[cap.id] || <Code2 className="w-4 h-4 text-accent-green" />;
 
@@ -89,7 +89,7 @@ export const Capabilities: React.FC = () => {
               </Card>
             );
           })}
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

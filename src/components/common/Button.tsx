@@ -49,7 +49,15 @@ export const Button: React.FC<ButtonProps> = ({
     baseClasses,
     sizeClasses[size],
     variantClasses[variant],
+    variant === 'primary' && 'relative overflow-hidden group',
     className
+  );
+
+  const sheen = variant === 'primary' && (
+    <span
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 -translate-x-[120%] group-hover:translate-x-[120%] transition-transform duration-700 ease-out bg-gradient-to-r from-transparent via-white/25 to-transparent"
+    />
   );
 
   if (href) {
@@ -60,6 +68,7 @@ export const Button: React.FC<ButtonProps> = ({
         target={isExternal ? '_blank' : undefined}
         rel={isExternal ? 'noopener noreferrer' : undefined}
       >
+        {sheen}
         {icon && iconPosition === 'left' && <span className="shrink-0">{icon}</span>}
         <span>{children}</span>
         {icon && iconPosition === 'right' && <span className="shrink-0">{icon}</span>}
@@ -69,6 +78,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <button className={combinedClasses} {...props}>
+      {sheen}
       {icon && iconPosition === 'left' && <span className="shrink-0">{icon}</span>}
       <span>{children}</span>
       {icon && iconPosition === 'right' && <span className="shrink-0">{icon}</span>}

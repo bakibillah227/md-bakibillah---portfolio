@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Linkedin, Mail, ArrowUp, Code2, ExternalLink } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowUp, Code2 } from 'lucide-react';
 import { personalData, navigationItems } from '../../data/personal';
 import { Container } from '../common/Container';
 import { scrollToSection } from '../../utils/helpers';

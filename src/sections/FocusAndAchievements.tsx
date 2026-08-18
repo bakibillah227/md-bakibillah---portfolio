@@ -10,6 +10,7 @@ import { Container } from '../components/common/Container';
 import { Card } from '../components/common/Card';
 import { Badge } from '../components/common/Badge';
 import { SectionHeading } from '../components/common/SectionHeading';
+import { Reveal } from '../components/common/Reveal';
 
 export const FocusAndAchievements: React.FC = () => {
   return (
@@ -22,7 +23,7 @@ export const FocusAndAchievements: React.FC = () => {
             subtitle="Transparent progression separating what I am actively building today, deep dive engineering topics under study, and forward professional milestones."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <Reveal className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* 1. Currently Building */}
             <Card className="bg-surface-card border-border-subtle hover:border-border-strong hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200 p-6 flex flex-col justify-between space-y-6 group motion-reduce:transform-none">
               <div className="space-y-4">
@@ -131,7 +132,7 @@ export const FocusAndAchievements: React.FC = () => {
                 Step 3: Long-term Impact
               </div>
             </Card>
-          </div>
+          </Reveal>
         </div>
 
         {/* PART 2: RECOGNITIONS */}
@@ -142,19 +143,21 @@ export const FocusAndAchievements: React.FC = () => {
             className="mb-6"
           />
 
-          <Card className="bg-surface-card border-border-subtle p-5 sm:p-6">
-            <ul className="divide-y divide-border-subtle">
-              {verifiedAchievements.map((item) => (
-                <li
-                  key={item.id}
-                  className="py-3 first:pt-0 last:pb-0 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1"
-                >
-                  <span className="text-sm font-semibold text-text-primary">{item.title}</span>
-                  <span className="text-xs text-text-secondary sm:text-right">{item.summary}</span>
-                </li>
-              ))}
-            </ul>
-          </Card>
+          <Reveal>
+            <Card className="bg-surface-card border-border-subtle p-5 sm:p-6">
+              <ul className="divide-y divide-border-subtle">
+                {verifiedAchievements.map((item) => (
+                  <li
+                    key={item.id}
+                    className="py-3 first:pt-0 last:pb-0 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1"
+                  >
+                    <span className="text-sm font-semibold text-text-primary">{item.title}</span>
+                    <span className="text-xs text-text-secondary sm:text-right">{item.summary}</span>
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          </Reveal>
         </div>
       </Container>
     </section>

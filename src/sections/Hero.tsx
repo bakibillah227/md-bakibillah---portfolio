@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import {
   ArrowRight,
   Terminal,
@@ -12,30 +12,7 @@ import { Container } from '../components/common/Container';
 import { Button } from '../components/common/Button';
 import { TechTicker } from '../components/common/TechTicker';
 import { scrollToSection } from '../utils/helpers';
-
-// Staggered motion variants for restrained entrance
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.05
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.45,
-      ease: [0.22, 1, 0.36, 1]
-    }
-  }
-};
+import { staggerContainer, fadeUpItem } from '../utils/motion';
 
 const identities = [
   'Software Engineer',
@@ -44,8 +21,12 @@ const identities = [
   'AI Enthusiast'
 ];
 
+const TILT_MAX_DEG = 6;
+
 export const Hero: React.FC = () => {
   const [identityIndex, setIdentityIndex] = useState(0);
+  const portraitRef = useRef<HTMLDivElement>(null);
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
 
   useEffect(() => {
     // Respect user motion preferences
@@ -59,10 +40,22 @@ export const Hero: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleScrollClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleScrollClick = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
     scrollToSection(href);
   };
+
+  const handleTilt = (e: React.MouseEvent) => {
+    const el = portraitRef.current;
+    if (!el) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const rect = el.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    setTilt({ rx: -py * TILT_MAX_DEG, ry: px * TILT_MAX_DEG });
+  };
+
+  const resetTilt = () => setTilt({ rx: 0, ry: 0 });
 
   return (
     <section
@@ -77,7 +70,7 @@ export const Hero: React.FC = () => {
 
       <Container size="lg">
         <motion.div
-          variants={containerVariants}
+          variants={staggerContainer}
           initial="hidden"
           animate="visible"
           className="space-y-10 sm:space-y-12"
@@ -87,7 +80,7 @@ export const Hero: React.FC = () => {
             {/* Left Column: Text & CTAs (7 Cols) */}
             <div className="lg:col-span-7 flex flex-col items-start text-left">
               {/* 1. Location Badge */}
-              <motion.div variants={itemVariants} className="mb-6">
+              <motion.div variants={fadeUpItem} className="mb-6">
                 <div className="inline-flex items-center gap-1.5 text-xs text-text-secondary font-mono bg-surface-secondary/80 border border-border-subtle px-3 py-1 rounded-full shadow-2xs">
                   <MapPin className="w-3.5 h-3.5 text-accent-green" />
                   <span>{personalData.location.city}, {personalData.location.country}</span>
@@ -95,7 +88,7 @@ export const Hero: React.FC = () => {
               </motion.div>
 
               {/* 2. Professional Identity & Headline with Rotating Text */}
-              <motion.div variants={itemVariants} className="space-y-3 mb-6 w-full">
+              <motion.div variants={fadeUpItem} className="space-y-3 mb-6 w-full">
                 <h1 className="text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-text-primary leading-[1.12]">
                   Hi, I'm <span className="text-text-primary">{personalData.name}</span>.
                 </h1>
@@ -119,7 +112,7 @@ export const Hero: React.FC = () => {
 
               {/* 3. Concise Value Proposition */}
               <motion.p
-                variants={itemVariants}
+                variants={fadeUpItem}
                 className="text-base sm:text-lg text-text-secondary leading-relaxed max-w-2xl mb-8 font-normal"
               >
                 I build scalable, reliable, user-focused web applications using modern JavaScript technologies, with a growing focus on backend engineering, system design, and AI-powered products.
@@ -127,14 +120,14 @@ export const Hero: React.FC = () => {
 
               {/* 4. Action CTA: View Projects Only */}
               <motion.div
-                variants={itemVariants}
+                variants={fadeUpItem}
                 className="mb-8"
               >
                 <Button
                   variant="primary"
                   size="lg"
                   href="#projects"
-                  onClick={(e: React.MouseEvent<HTMLAnchorElement>) => handleScrollClick(e, '#projects')}
+                  onClick={(e) => handleScrollClick(e, '#projects')}
                   icon={<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
                   iconPosition="right"
                   className="group font-semibold text-sm sm:text-base"
@@ -144,24 +137,32 @@ export const Hero: React.FC = () => {
               </motion.div>
 
               {/* 5. Horizontal Technology Ticker */}
-              <motion.div variants={itemVariants} className="w-full">
+              <motion.div variants={fadeUpItem} className="w-full">
                 <TechTicker />
               </motion.div>
             </div>
 
             {/* Right Column: Modestly Enlarged Professional Profile Image Container (5 Cols) */}
             <motion.div
-              variants={itemVariants}
+              variants={fadeUpItem}
               className="lg:col-span-5 flex items-center justify-center lg:justify-end"
             >
-              <div className="relative group w-full max-w-[290px] sm:max-w-[350px] lg:max-w-[390px] xl:max-w-[420px]">
+              <div
+                ref={portraitRef}
+                onMouseMove={handleTilt}
+                onMouseLeave={resetTilt}
+                style={{
+                  transform: `perspective(900px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`
+                }}
+                className="relative group w-full max-w-[290px] sm:max-w-[350px] lg:max-w-[390px] xl:max-w-[420px] transition-transform duration-300 ease-out will-change-transform motion-reduce:transform-none"
+              >
                 {/* Clean framing card */}
-                <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-border-strong/80 bg-surface-card shadow-xs group-hover:border-border-strong transition-all duration-300 aspect-[3/4]">
+                <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-border-strong/80 bg-surface-card shadow-xs group-hover:border-border-strong transition-all duration-300 aspect-[3/4] [transform-style:preserve-3d]">
                   {personalData.avatarUrl ? (
                     <img
                       src={personalData.avatarUrl}
                       alt={`Portrait of ${personalData.name}`}
-                      className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-[1.02]"
+                      className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-[1.02] [transform:translateZ(0)]"
                       referrerPolicy="no-referrer"
                     />
                   ) : (
@@ -176,7 +177,7 @@ export const Hero: React.FC = () => {
 
           {/* 6. Subtle Credibility & Engineering Focus Strip */}
           <motion.div
-            variants={itemVariants}
+            variants={fadeUpItem}
             className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-4"
           >
             <div className="p-4 rounded-xl bg-surface-secondary/50 border border-border-subtle hover:border-border-strong transition-colors">

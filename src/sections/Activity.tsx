@@ -6,13 +6,13 @@ import {
   Cpu,
   Activity as ActivityIcon,
   AlertCircle,
-  CheckCircle2,
   Clock
 } from 'lucide-react';
 import { Container } from '../components/common/Container';
 import { Card } from '../components/common/Card';
 import { Button } from '../components/common/Button';
 import { SectionHeading } from '../components/common/SectionHeading';
+import { Reveal } from '../components/common/Reveal';
 import { useGithubActivity } from '../hooks/useGithubActivity';
 import { useLeetCodeActivity } from '../hooks/useLeetCodeActivity';
 
@@ -33,11 +33,12 @@ export const Activity: React.FC = () => {
     totalSolved,
     easySolved,
     mediumSolved,
-    hardSolved,
-    recentSubmissions
+    hardSolved
   } = useLeetCodeActivity('nexorithm');
 
   const [hoveredDay, setHoveredDay] = useState<{ date: string; count: number } | null>(null);
+
+  const latestSubmission = leetcodeData?.recentSubmissions?.[0] ?? null;
 
   // Color mapper conforming strictly to portfolio theme tokens
   const getCellColor = (level: number) => {
@@ -94,7 +95,7 @@ export const Activity: React.FC = () => {
           subtitle="Continuous practice across GitHub open-source repositories and algorithmic problem solving on LeetCode."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Column 1: Dynamic GitHub Contribution & Activity - 6 Cols */}
           <div className="lg:col-span-6 space-y-6">
             <Card className="bg-surface-card border-border-subtle hover:border-border-strong transition-all duration-200 p-6 space-y-6 h-full">
@@ -411,25 +412,25 @@ export const Activity: React.FC = () => {
                   </div>
 
                   {/* Recent Activity / Submission if available */}
-                  {recentSubmissions && recentSubmissions.length > 0 && (
+                  {latestSubmission && (
                     <div className="p-3.5 rounded-xl bg-surface-secondary/50 border border-border-subtle space-y-2">
                       <div className="flex items-center justify-between text-[11px] font-mono text-text-tertiary">
                         <span className="flex items-center gap-1 font-semibold uppercase tracking-wider">
                           <Clock className="w-3 h-3 text-accent-green" />
                           Recent Problem
                         </span>
-                        <span>{formatTimestamp(recentSubmissions[0].timestamp)}</span>
+                        <span>{formatTimestamp(latestSubmission.timestamp)}</span>
                       </div>
                       <div className="flex items-center justify-between gap-2">
                         <span className="text-xs font-semibold text-text-primary truncate">
-                          {recentSubmissions[0].title}
+                          {latestSubmission.title}
                         </span>
                         <div className="flex items-center gap-1.5 shrink-0">
                           <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-medium">
-                            {recentSubmissions[0].statusDisplay}
+                            {latestSubmission.statusDisplay}
                           </span>
                           <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-surface-card border border-border-subtle text-text-secondary uppercase">
-                            {recentSubmissions[0].lang}
+                            {latestSubmission.lang}
                           </span>
                         </div>
                       </div>
@@ -463,7 +464,7 @@ export const Activity: React.FC = () => {
               )}
             </Card>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

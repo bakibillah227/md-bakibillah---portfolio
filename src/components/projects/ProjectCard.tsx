@@ -16,7 +16,6 @@ import { Button } from '../common/Button';
 interface ProjectCardProps {
   project: Project;
   layoutVariant?: 'horizontal' | 'standard';
-  index: number;
   expanded: boolean;
   onExpand: () => void;
   onToggle: () => void;
@@ -24,7 +23,6 @@ interface ProjectCardProps {
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
   project,
-  index,
   expanded,
   onExpand,
   onToggle

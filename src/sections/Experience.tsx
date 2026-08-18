@@ -12,6 +12,7 @@ import { Container } from '../components/common/Container';
 import { Card } from '../components/common/Card';
 import { Badge } from '../components/common/Badge';
 import { SectionHeading } from '../components/common/SectionHeading';
+import { Reveal } from '../components/common/Reveal';
 
 export const Experience: React.FC = () => {
   return (
@@ -22,7 +23,7 @@ export const Experience: React.FC = () => {
           subtitle="Professional background, transferable communication skills, and academic computer science foundation."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Professional Experience Column: 7 Cols */}
           <div className="lg:col-span-7 space-y-6">
             <div className="flex items-center justify-between pb-3 border-b border-border-subtle">
@@ -207,7 +208,7 @@ export const Experience: React.FC = () => {
               </Card>
             ))}
           </div>
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

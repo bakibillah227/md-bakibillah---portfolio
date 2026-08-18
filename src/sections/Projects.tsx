@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { FolderGit2, ArrowUpRight, Github } from 'lucide-react';
+import { Github } from 'lucide-react';
 import { projectsData } from '../data/projects';
 import { Container } from '../components/common/Container';
 import { SectionHeading } from '../components/common/SectionHeading';
 import { ProjectCard } from '../components/projects/ProjectCard';
 import { Button } from '../components/common/Button';
+import { Reveal } from '../components/common/Reveal';
 
 export const Projects: React.FC = () => {
   const [selectedFilter, setSelectedFilter] = useState<string>('All');
@@ -50,18 +51,17 @@ export const Projects: React.FC = () => {
         </div>
 
         {/* Projects List */}
-        <div className="space-y-8">
-          {filteredProjects.map((project, idx) => (
+        <Reveal className="space-y-8">
+          {filteredProjects.map((project) => (
             <ProjectCard
               key={project.id}
               project={project}
-              index={idx}
               expanded={expandedProjectId === project.id}
               onExpand={() => handleExpand(project.id)}
               onToggle={() => handleToggle(project.id)}
             />
           ))}
-        </div>
+        </Reveal>
 
         {/* GitHub Repositories Footer Callout */}
         <div className="mt-12 p-6 rounded-2xl bg-surface-secondary/40 border border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-4">
