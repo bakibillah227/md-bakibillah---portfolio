@@ -28,34 +28,9 @@ let cachedLeetCodeData: LeetCodeProfileData | null = null;
 let lastFetchTime = 0;
 const CACHE_DURATION_MS = 10 * 60 * 1000; // 10 minutes
 
-const LEETCODE_GRAPHQL_URL = 'https://leetcode.com/graphql';
-
-const PROFILE_QUERY = `
-query userPublicProfile($username: String!, $limit: Int!) {
-  matchedUser(username: $username) {
-    profile {
-      ranking
-      reputation
-    }
-    submitStats {
-      acSubmissionNum { difficulty count }
-    }
-  }
-  allQuestionsCount { difficulty count }
-  recentAcSubmissionList(username: $username, limit: $limit) {
-    title
-    titleSlug
-    timestamp
-    statusDisplay
-    lang
-  }
-}`;
-
-function pickCount(list: { difficulty: string; count: number }[] | undefined, difficulty: string): number {
-  if (!Array.isArray(list)) return 0;
-  const entry = list.find((item) => item.difficulty === difficulty);
-  return typeof entry?.count === 'number' ? entry.count : 0;
-}
+// Upstream LeetCode endpoint (https://leetcode.com/graphql) blocks browser CORS,
+// so it is fetched server-side by the Netlify Function and exposed at /api/leetcode.
+const LEETCODE_PROXY_URL = '/api/leetcode';
 
 function normalizeLeetCodeData(payload: unknown): LeetCodeProfileData | null {
   const root = (payload as { data?: Record<string, unknown> } | null)?.data;
@@ -112,6 +87,12 @@ function normalizeLeetCodeData(payload: unknown): LeetCodeProfileData | null {
   return null;
 }
 
+function pickCount(list: { difficulty: string; count: number }[] | undefined, difficulty: string): number {
+  if (!Array.isArray(list)) return 0;
+  const entry = list.find((item) => item.difficulty === difficulty);
+  return typeof entry?.count === 'number' ? entry.count : 0;
+}
+
 export function useLeetCodeActivity(username = 'nexorithm') {
   const [data, setData] = useState<LeetCodeProfileData | null>(cachedLeetCodeData);
   const [loading, setLoading] = useState<boolean>(!cachedLeetCodeData);
@@ -134,15 +115,7 @@ export function useLeetCodeActivity(username = 'nexorithm') {
         setLoading(true);
         setHasError(false);
 
-        const res = await fetch(LEETCODE_GRAPHQL_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            query: PROFILE_QUERY,
-            variables: { username, limit: 5 }
-          }),
+        const res = await fetch(`${LEETCODE_PROXY_URL}?username=${encodeURIComponent(username)}`, {
           signal: controller.signal
         });
 
