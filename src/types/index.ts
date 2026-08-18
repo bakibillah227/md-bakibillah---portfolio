@@ -151,6 +151,7 @@ export interface VerifiedAchievement {
   title: string;
   context: string;
   detail: string;
+  summary?: string;
   category: 'Competition' | 'Open Source' | 'Production Exposure' | 'Academic Recognition';
   badge: string;
 }
