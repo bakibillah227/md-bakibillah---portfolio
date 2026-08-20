@@ -76,7 +76,7 @@
   <!-- Main Content Area -->
   <!-- Header Banner -->
   <rect x="210" y="66" width="566" height="58" rx="8" fill="#1c1c20" stroke="#27272a" stroke-width="1"/>
-  <text x="228" y="93" fill="#f4f4f5" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700">Vocabulary Flashcards & Pronunciation</text>
+  <text x="228" y="93" fill="#f4f4f5" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700">Vocabulary Flashcards &amp; Pronunciation</text>
   <text x="228" y="111" fill="#a1a1aa" font-family="system-ui, -apple-system, sans-serif" font-size="11">Click speaker to hear pronunciation with instant phonetic feedback</text>
 
   <!-- Flashcard Grid (2x2) -->
@@ -92,7 +92,7 @@
     <line x1="228" y1="250" x2="465" y2="250" stroke="#27272a" stroke-width="1"/>
     <!-- Pronounce Button -->
     <rect x="228" y="258" width="105" height="24" rx="5" fill="#10b981"/>
-    <use href="#ej-speaker" x="235" y="263" width="13" height="13" fill="#042f2e"/>
+    <use href="#ej-speaker" x="235" y="263" width="13" height="13" color="#042f2e"/>
     <text x="254" y="274" fill="#042f2e" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700">Pronounce</text>
     <rect x="340" y="258" width="60" height="24" rx="5" fill="#27272a"/>
     <text x="350" y="274" fill="#a1a1aa" font-family="system-ui, -apple-system, sans-serif" font-size="10">Example</text>
@@ -110,7 +110,7 @@
     <line x1="521" y1="250" x2="758" y2="250" stroke="#27272a" stroke-width="1"/>
     <!-- Pronounce Button -->
     <rect x="521" y="258" width="105" height="24" rx="5" fill="#0284c7"/>
-    <use href="#ej-speaker" x="528" y="263" width="13" height="13" fill="#ffffff"/>
+    <use href="#ej-speaker" x="528" y="263" width="13" height="13" color="#ffffff"/>
     <text x="547" y="274" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700">Pronounce</text>
     <rect x="633" y="258" width="60" height="24" rx="5" fill="#27272a"/>
     <text x="643" y="274" fill="#a1a1aa" font-family="system-ui, -apple-system, sans-serif" font-size="10">Example</text>
@@ -124,7 +124,7 @@
     <text x="228" y="384" fill="#d4d4d8" font-family="system-ui, -apple-system, sans-serif" font-size="12">Dealing with things sensibly and realistically based on practice.</text>
     <line x1="228" y1="424" x2="465" y2="424" stroke="#27272a" stroke-width="1"/>
     <rect x="228" y="434" width="105" height="24" rx="5" fill="#d97706"/>
-    <use href="#ej-speaker" x="235" y="439" width="13" height="13" fill="#ffffff"/>
+    <use href="#ej-speaker" x="235" y="439" width="13" height="13" color="#ffffff"/>
     <text x="254" y="450" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700">Pronounce</text>
   </g>
 
@@ -136,7 +136,7 @@
     <text x="521" y="384" fill="#d4d4d8" font-family="system-ui, -apple-system, sans-serif" font-size="12">Existing or occurring at the same time; simultaneous execution.</text>
     <line x1="521" y1="424" x2="758" y2="424" stroke="#27272a" stroke-width="1"/>
     <rect x="521" y="434" width="105" height="24" rx="5" fill="#7e22ce"/>
-    <use href="#ej-speaker" x="528" y="439" width="13" height="13" fill="#ffffff"/>
+    <use href="#ej-speaker" x="528" y="439" width="13" height="13" color="#ffffff"/>
     <text x="547" y="450" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700">Pronounce</text>
   </g>
 </svg>
