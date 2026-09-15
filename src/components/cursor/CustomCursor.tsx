@@ -25,8 +25,8 @@ const STATE_VISUALS: Record<
  *
  * All animation runs inside a single rAF loop that writes transform/opacity
  * directly to DOM nodes - no React state is touched while tracking the pointer,
- * so moving the mouse never triggers a re-render. Coarse pointer devices skip
- * the cursor entirely, and reduced-motion users get a minimal static cursor.
+ * so moving the mouse never triggers a re-render. Coarse pointer devices and
+ * reduced-motion users skip the custom cursor entirely and keep the native one.
  */
 export const CustomCursor: React.FC = () => {
   const reducedMotion = useReducedMotion();
@@ -36,7 +36,7 @@ export const CustomCursor: React.FC = () => {
   const dotRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (coarsePointer) return;
+    if (coarsePointer || reducedMotion) return;
     if (typeof document === 'undefined') return;
 
     const cursor = cursorRef.current;
@@ -120,9 +120,9 @@ export const CustomCursor: React.FC = () => {
       const dt = lastTime === null ? 0.016 : (time - lastTime) / 1000;
       lastTime = time;
 
-      const posFactor = reducedMotion ? 1 : smoothingFactor(DOT_TRACK_RATE, dt);
-      const ringFactor = reducedMotion ? 1 : smoothingFactor(RING_TRACK_RATE, dt);
-      const visualFactor = reducedMotion ? 1 : smoothingFactor(VISUAL_TRACK_RATE, dt);
+      const posFactor = smoothingFactor(DOT_TRACK_RATE, dt);
+      const ringFactor = smoothingFactor(RING_TRACK_RATE, dt);
+      const visualFactor = smoothingFactor(VISUAL_TRACK_RATE, dt);
 
       dot.x += (pos.x - dot.x) * posFactor;
       dot.y += (pos.y - dot.y) * posFactor;
@@ -173,14 +173,11 @@ export const CustomCursor: React.FC = () => {
     window.addEventListener('pointermove', onPointerMove, { passive: true });
     if (canAnimate) rafId = requestAnimationFrame(frame);
 
-    if (!reducedMotion) {
-      document.addEventListener('pointerover', onPointerOver, { passive: true });
-      document.addEventListener('pointerout', onPointerOut, { passive: true });
-      window.addEventListener('pointerdown', onPointerDown, { passive: true });
-      window.addEventListener('pointerup', onPointerUp, { passive: true });
-      window.addEventListener('blur', onWindowBlur);
-    }
-
+    document.addEventListener('pointerover', onPointerOver, { passive: true });
+    document.addEventListener('pointerout', onPointerOut, { passive: true });
+    window.addEventListener('pointerdown', onPointerDown, { passive: true });
+    window.addEventListener('pointerup', onPointerUp, { passive: true });
+    window.addEventListener('blur', onWindowBlur);
     document.documentElement.addEventListener('mouseleave', onMouseLeave, { passive: true });
 
     return () => {
@@ -198,7 +195,7 @@ export const CustomCursor: React.FC = () => {
     };
   }, [reducedMotion, coarsePointer]);
 
-  if (coarsePointer) return null;
+  if (coarsePointer || reducedMotion) return null;
 
   return (
     <div

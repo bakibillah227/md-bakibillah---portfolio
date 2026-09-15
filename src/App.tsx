@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { AnimatePresence } from 'motion/react';
+import { AnimatePresence, MotionConfig } from 'motion/react';
 import { ThemeProvider } from './context/ThemeContext';
 import { useReducedMotion } from './hooks/useReducedMotion';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
@@ -30,6 +30,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <ErrorBoundary>
+      <MotionConfig reducedMotion="user">
       <div className="isolate min-h-screen flex flex-col bg-surface-primary text-text-primary selection:bg-accent-green/20 selection:text-text-primary">
         {/* Subtle ambient canvas background (behind all content) */}
         <AmbientBackground />
@@ -83,6 +84,7 @@ export default function App() {
         {/* Minimal Professional Footer */}
         <Footer />
       </div>
+      </MotionConfig>
       </ErrorBoundary>
     </ThemeProvider>
   );

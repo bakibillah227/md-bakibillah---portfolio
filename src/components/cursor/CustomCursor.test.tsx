@@ -84,17 +84,11 @@ describe('CustomCursor', () => {
     expect(document.documentElement.classList.contains('mc-cursor-active')).toBe(false);
   });
 
-  it('keeps a minimal static cursor for reduced-motion users', () => {
+  it('is not rendered for reduced-motion users and keeps the native cursor', () => {
     mockMatchMedia('(prefers-reduced-motion: reduce)');
     const { container } = render(<CustomCursor />);
 
-    const root = container.querySelector('.mc-cursor');
-    expect(root).toBeTruthy();
-    expect(document.documentElement.classList.contains('mc-cursor-active')).toBe(true);
-
-    const button = document.createElement('button');
-    container.appendChild(button);
-    fireEvent(button, new MouseEvent('pointerover', { bubbles: true }));
-    expect(root?.getAttribute('data-state')).toBe('default');
+    expect(container.querySelector('.mc-cursor')).toBeNull();
+    expect(document.documentElement.classList.contains('mc-cursor-active')).toBe(false);
   });
 });
