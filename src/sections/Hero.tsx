@@ -7,12 +7,13 @@ import {
   MapPin
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useReducedMotion } from '../hooks/useReducedMotion';
 import { personalData } from '../data/personal';
 import { Container } from '../components/common/Container';
 import { Button } from '../components/common/Button';
 import { TechTicker } from '../components/common/TechTicker';
 import { scrollToSection } from '../utils/helpers';
-import { staggerContainer, fadeUpItem } from '../utils/motion';
+import { staggerContainer, fadeUpItem, isReducedMotionEnabled } from '../utils/motion';
 
 const identities = [
   'Software Engineer',
@@ -27,18 +28,18 @@ export const Hero: React.FC = () => {
   const [identityIndex, setIdentityIndex] = useState(0);
   const portraitRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
+  const reduced = useReducedMotion();
 
   useEffect(() => {
     // Respect user motion preferences
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (mediaQuery.matches) return;
+    if (reduced) return;
 
     const interval = setInterval(() => {
       setIdentityIndex((prev) => (prev + 1) % identities.length);
     }, 2600);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [reduced]);
 
   const handleScrollClick = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
@@ -48,7 +49,7 @@ export const Hero: React.FC = () => {
   const handleTilt = (e: React.MouseEvent) => {
     const el = portraitRef.current;
     if (!el) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (isReducedMotionEnabled()) return;
     const rect = el.getBoundingClientRect();
     const px = (e.clientX - rect.left) / rect.width - 0.5;
     const py = (e.clientY - rect.top) / rect.height - 0.5;

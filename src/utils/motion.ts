@@ -40,3 +40,28 @@ export const fadeUp: Variants = {
     }
   }
 };
+
+/**
+ * Synchronous, SSR-safe read of the `prefers-reduced-motion` preference.
+ * Prefer this inside event handlers and animation loops that cannot use the
+ * reactive `useReducedMotion` hook.
+ */
+export function isReducedMotionEnabled(): boolean {
+  return (
+    typeof window !== 'undefined' &&
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  );
+}
+
+/**
+ * Synchronous, SSR-safe check for a coarse primary pointer (touchscreen).
+ * Used to gate pointer-only interactions such as a custom cursor.
+ */
+export function isCoarsePointer(): boolean {
+  return (
+    typeof window !== 'undefined' &&
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(pointer: coarse)').matches
+  );
+}

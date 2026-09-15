@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { ThemeProvider } from './context/ThemeContext';
+import { useReducedMotion } from './hooks/useReducedMotion';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
@@ -16,14 +17,13 @@ import { Contact } from './sections/Contact';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
-    const reduced =
-      typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const timer = setTimeout(() => setIsLoading(false), reduced ? 500 : 1900);
+    const delay = reducedMotion ? 500 : 1900;
+    const timer = setTimeout(() => setIsLoading(false), delay);
     return () => clearTimeout(timer);
-  }, []);
+  }, [reducedMotion]);
 
   return (
     <ThemeProvider>

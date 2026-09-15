@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { Check } from 'lucide-react';
 import { personalData } from '../../data/personal';
+import { isReducedMotionEnabled } from '../../utils/motion';
 
 const bootSteps = [
   { id: 'init', label: 'initializing portfolio console' },
@@ -12,9 +13,7 @@ const bootSteps = [
 
 export const Preloader: React.FC = () => {
   const [step, setStep] = useState(0);
-  const reduced =
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduced = isReducedMotionEnabled();
 
   useEffect(() => {
     if (reduced) {
