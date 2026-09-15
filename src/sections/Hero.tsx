@@ -181,7 +181,7 @@ export const Hero: React.FC = () => {
             variants={fadeUpItem}
             className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-4"
           >
-            <div className="p-4 rounded-xl bg-surface-secondary/50 border border-border-subtle hover:border-border-strong transition-colors">
+            <div className="p-4 rounded-xl bg-surface-secondary/50 border border-border-subtle hover:border-border-strong hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200 motion-reduce:transform-none">
               <div className="flex items-center gap-2 mb-1.5">
                 <Layers className="w-4 h-4 text-accent-green" />
                 <span className="text-xs font-mono font-semibold uppercase tracking-wider text-text-primary">
@@ -193,7 +193,7 @@ export const Hero: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-surface-secondary/50 border border-border-subtle hover:border-border-strong transition-colors">
+            <div className="p-4 rounded-xl bg-surface-secondary/50 border border-border-subtle hover:border-border-strong hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200 motion-reduce:transform-none">
               <div className="flex items-center gap-2 mb-1.5">
                 <Database className="w-4 h-4 text-accent-orange" />
                 <span className="text-xs font-mono font-semibold uppercase tracking-wider text-text-primary">
@@ -205,7 +205,7 @@ export const Hero: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-surface-secondary/50 border border-border-subtle hover:border-border-strong transition-colors">
+            <div className="p-4 rounded-xl bg-surface-secondary/50 border border-border-subtle hover:border-border-strong hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200 motion-reduce:transform-none">
               <div className="flex items-center gap-2 mb-1.5">
                 <Terminal className="w-4 h-4 text-text-primary" />
                 <span className="text-xs font-mono font-semibold uppercase tracking-wider text-text-primary">

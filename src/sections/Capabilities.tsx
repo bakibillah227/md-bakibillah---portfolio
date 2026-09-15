@@ -45,7 +45,7 @@ export const Capabilities: React.FC = () => {
                 <div className="space-y-4">
                   {/* Category Header */}
                   <div className="flex items-center gap-2.5">
-                    <div className="p-2 rounded-lg bg-surface-secondary text-text-primary border border-border-subtle group-hover:border-border-strong/80 group-hover:bg-surface-secondary/80 transition-colors shrink-0">
+                    <div className="p-2 rounded-lg bg-surface-secondary text-text-primary border border-border-subtle group-hover:border-border-strong/80 group-hover:bg-surface-secondary/80 transition-all duration-200 group-hover:scale-105 motion-reduce:transform-none shrink-0">
                       {icon}
                     </div>
                     <h3 className="text-sm sm:text-base font-bold text-text-primary group-hover:text-accent-green-dark dark:group-hover:text-accent-green transition-colors">

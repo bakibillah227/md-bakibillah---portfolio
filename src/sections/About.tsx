@@ -53,7 +53,7 @@ export const About: React.FC = () => {
 
             {/* Core Engineering Principles */}
             <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              <div className="p-3.5 rounded-lg bg-surface-secondary/60 border border-border-subtle">
+              <div className="p-3.5 rounded-lg bg-surface-secondary/60 border border-border-subtle transition-colors duration-200 hover:border-border-strong">
                 <div className="flex items-center gap-2 mb-1">
                   <ShieldCheck className="w-4 h-4 text-accent-green" />
                   <span className="text-xs font-mono font-semibold text-text-primary uppercase tracking-wider">
@@ -65,7 +65,7 @@ export const About: React.FC = () => {
                 </p>
               </div>
 
-              <div className="p-3.5 rounded-lg bg-surface-secondary/60 border border-border-subtle">
+              <div className="p-3.5 rounded-lg bg-surface-secondary/60 border border-border-subtle transition-colors duration-200 hover:border-border-strong">
                 <div className="flex items-center gap-2 mb-1">
                   <GitBranch className="w-4 h-4 text-accent-orange" />
                   <span className="text-xs font-mono font-semibold text-text-primary uppercase tracking-wider">

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Mail } from 'lucide-react';
-import { motion } from 'motion/react';
 import { Container } from '../components/common/Container';
 import { Button } from '../components/common/Button';
+import { Reveal } from '../components/common/Reveal';
 import { personalData } from '../data/personal';
 
 export const Contact: React.FC = () => {
@@ -13,13 +13,7 @@ export const Contact: React.FC = () => {
       aria-label="Contact and Collaboration"
     >
       <Container size="lg">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-4xl mx-auto rounded-2xl sm:rounded-3xl bg-surface-secondary/35 border border-border-subtle/80 p-8 sm:p-14 lg:p-16 text-center space-y-6 sm:space-y-8 relative overflow-hidden"
-        >
+        <Reveal className="max-w-4xl mx-auto rounded-2xl sm:rounded-3xl bg-surface-secondary/35 border border-border-subtle/80 p-8 sm:p-14 lg:p-16 text-center space-y-6 sm:space-y-8 relative overflow-hidden">
           {/* Subtle radial ambient highlight */}
           <div
             className="pointer-events-none absolute inset-0 bg-gradient-to-b from-surface-primary/30 to-transparent opacity-60"
@@ -49,7 +43,7 @@ export const Contact: React.FC = () => {
               Get In Touch
             </Button>
           </div>
-        </motion.div>
+        </Reveal>
       </Container>
     </section>
   );
