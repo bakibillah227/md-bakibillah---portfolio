@@ -1,0 +1,92 @@
+/*
+ * Premium custom cursor
+ *
+ * The root lives at 0,0 and is pointer-transparent; a JS rAF loop writes
+ * translate3d() transforms to the ring/dot layer per frame. State scaling
+ * (hover/view/pressed) lives in the same transform string, so no transition
+ * ever fights the per-frame position. Only colors/opacity of the label style
+ * transitions in CSS.
+ */
+.mc-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+  will-change: opacity;
+}
+
+.mc-cursor.is-visible {
+  opacity: 1;
+}
+
+.mc-cursor__ring,
+.mc-cursor__dot,
+.mc-cursor__label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+/* Outer tracking ring - position + scale + opacity are driven by JS each frame */
+.mc-cursor__ring {
+  width: 30px;
+  height: 30px;
+  border-radius: 9999px;
+  border: 1.5px solid var(--text-primary, #191c1a);
+  background-color: transparent;
+  transition:
+    background-color 0.16s ease-out,
+    border-color 0.16s ease-out;
+  will-change: transform;
+}
+
+/* Inner accent dot - positioned with an even tighter tracking rate */
+.mc-cursor__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: var(--accent-green, #2b664c);
+  will-change: transform;
+}
+
+/* VIEW label - only revealed once the ring switches to its filled "view" state */
+.mc-cursor__label {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-primary, #191c1a);
+  opacity: 0;
+  transition:
+    opacity 0.12s ease-out,
+    color 0.16s ease-out;
+  white-space: nowrap;
+}
+
+.mc-cursor[data-state='view'] .mc-cursor__ring {
+  background-color: var(--text-primary, #191c1a);
+  border-color: var(--text-primary, #191c1a);
+}
+
+.mc-cursor[data-state='view'] .mc-cursor__label {
+  color: var(--surface-primary, #ffffff);
+  opacity: 1;
+}
+
+/* Hide the native cursor everywhere while the custom cursor is active */
+html.mc-cursor-active,
+html.mc-cursor-active * {
+  cursor: none !important;
+}

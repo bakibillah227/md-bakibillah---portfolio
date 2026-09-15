@@ -33,6 +33,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <article
       className="group relative bg-surface-card border border-border-subtle hover:border-border-strong rounded-2xl p-6 sm:p-8 transition-all duration-300 ease-out shadow-xs hover:shadow-md hover:-translate-y-1 sm:hover:-translate-y-1.5 motion-reduce:transform-none motion-reduce:transition-none overflow-hidden"
+      data-cursor="view"
       aria-expanded={expanded}
       aria-labelledby={`project-title-${project.id}`}
     >

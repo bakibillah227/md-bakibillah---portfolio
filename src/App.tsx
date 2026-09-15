@@ -15,6 +15,7 @@ import { FocusAndAchievements } from './sections/FocusAndAchievements';
 import { Activity } from './sections/Activity';
 import { Contact } from './sections/Contact';
 import { AmbientBackground } from './components/background/AmbientBackground';
+import { CustomCursor } from './components/cursor/CustomCursor';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,6 +33,9 @@ export default function App() {
       <div className="isolate min-h-screen flex flex-col bg-surface-primary text-text-primary selection:bg-accent-green/20 selection:text-text-primary">
         {/* Subtle ambient canvas background (behind all content) */}
         <AmbientBackground />
+
+        {/* Premium custom cursor (fine pointers only) */}
+        <CustomCursor />
 
         {/* Boot Sequence Preloader */}
         <AnimatePresence mode="wait">
