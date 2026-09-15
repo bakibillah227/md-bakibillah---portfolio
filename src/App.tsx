@@ -14,6 +14,7 @@ import { Experience } from './sections/Experience';
 import { FocusAndAchievements } from './sections/FocusAndAchievements';
 import { Activity } from './sections/Activity';
 import { Contact } from './sections/Contact';
+import { AmbientBackground } from './components/background/AmbientBackground';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,7 +29,10 @@ export default function App() {
   return (
     <ThemeProvider>
       <ErrorBoundary>
-      <div className="min-h-screen flex flex-col bg-surface-primary text-text-primary selection:bg-accent-green/20 selection:text-text-primary">
+      <div className="isolate min-h-screen flex flex-col bg-surface-primary text-text-primary selection:bg-accent-green/20 selection:text-text-primary">
+        {/* Subtle ambient canvas background (behind all content) */}
+        <AmbientBackground />
+
         {/* Boot Sequence Preloader */}
         <AnimatePresence mode="wait">
           {isLoading && <Preloader key="preloader" />}
