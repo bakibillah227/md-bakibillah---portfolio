@@ -18,6 +18,13 @@
     --accent-orange-dark: #8A3D14;
     --border-subtle: #E4E5DC;
     --border-strong: #CDD0C4;
+
+    /* Background atmosphere tokens (r g b) for the animated technical background */
+    --bg-tech-core: 43 102 76;
+    --bg-tech-cool: 79 116 158;
+    --bg-tech-violet: 118 100 148;
+    --bg-tech-line: 25 28 26;
+    --bg-grid-alpha: 0.045;
   }
 
   .dark {
@@ -35,6 +42,12 @@
     --accent-orange-dark: #F09B82;
     --border-subtle: #242926;
     --border-strong: #343B37;
+
+    --bg-tech-core: 72 184 131;
+    --bg-tech-cool: 96 132 176;
+    --bg-tech-violet: 140 124 178;
+    --bg-tech-line: 236 238 233;
+    --bg-grid-alpha: 0.055;
   }
 
   html {

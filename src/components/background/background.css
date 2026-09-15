@@ -1,0 +1,159 @@
+/**
+ * Layered animated technical background.
+ *
+ * The shell sits at z-index -1 inside the app's `isolate` stacking context, so
+ * it paints above the page background but behind all content. Every layer is a
+ * pure decoration: the shell and all children ignore pointer events, and the
+ * shell clips anything that extends past the viewport so it can never cause
+ * horizontal overflow or intercept clicks.
+ */
+
+.bg-shell {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/*
+ * Parallax wrappers are moved by the canvas engine (direct transform writes
+ * from the same single rAF loop) so the layers shift at different speeds
+ * relative to the pointer. The transform is applied only while motion is
+ * allowed; under reduced motion the wrappers stay neutral.
+ */
+.bg-parallax {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+/* Large ambient gradient fields that slowly breathe behind everything. */
+.bg-atmosphere {
+  position: absolute;
+  inset: -14%;
+}
+
+.bg-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+}
+
+.bg-blob--core {
+  top: -12%;
+  left: -6%;
+  width: 58%;
+  height: 52%;
+  background: radial-gradient(
+    circle at 32% 32%,
+    rgb(var(--bg-tech-core) / 0.2),
+    transparent 66%
+  );
+}
+
+.bg-blob--cool {
+  top: 6%;
+  right: -10%;
+  width: 52%;
+  height: 46%;
+  background: radial-gradient(
+    circle at 68% 34%,
+    rgb(var(--bg-tech-cool) / 0.16),
+    transparent 66%
+  );
+}
+
+.bg-blob--violet {
+  bottom: -14%;
+  right: 8%;
+  width: 48%;
+  height: 42%;
+  background: radial-gradient(
+    circle at 60% 40%,
+    rgb(var(--bg-tech-violet) / 0.13),
+    transparent 66%
+  );
+}
+
+/* Faint technical grid with a soft radial fade so it never fights the text. */
+.bg-grid {
+  position: absolute;
+  inset: -10%;
+  background-image:
+    linear-gradient(to right, rgb(var(--bg-tech-line) / var(--bg-grid-alpha)) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--bg-tech-line) / var(--bg-grid-alpha)) 1px, transparent 1px);
+  background-size: 58px 58px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 120% 95% at 50% 22%,
+    #000 0%,
+    rgba(0, 0, 0, 0.5) 42%,
+    transparent 74%
+  );
+  mask-image: radial-gradient(
+    ellipse 120% 95% at 50% 22%,
+    #000 0%,
+    rgba(0, 0, 0, 0.5) 42%,
+    transparent 74%
+  );
+}
+
+/*
+ * Continuous breathing/crawl only runs when the user allows motion. Under
+ * `prefers-reduced-motion: reduce` the global reduced-motion rule in
+ * index.css also neutralizes these, but the no-preference guards keep the
+ * animation from ever being scheduled at all for eligible users.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .bg-blob--core {
+    animation: bg-drift-core 36s ease-in-out infinite alternate;
+  }
+
+  .bg-blob--cool {
+    animation: bg-drift-cool 44s ease-in-out infinite alternate;
+  }
+
+  .bg-blob--violet {
+    animation: bg-drift-violet 40s ease-in-out infinite alternate;
+  }
+
+  .bg-grid {
+    animation: bg-grid-crawl 48s linear infinite;
+  }
+}
+
+@keyframes bg-drift-core {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(6%, 4%, 0) scale(1.14);
+  }
+}
+
+@keyframes bg-drift-cool {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  to {
+    transform: translate3d(-6%, 5%, 0) scale(1);
+  }
+}
+
+@keyframes bg-drift-violet {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-4%, -5%, 0) scale(1.12);
+  }
+}
+
+@keyframes bg-grid-crawl {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 58px, 0);
+  }
+}
