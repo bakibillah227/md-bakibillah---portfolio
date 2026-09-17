@@ -1,0 +1,73 @@
+/*
+ * Hero decorative layer.
+ *
+ * Static composition foundation that gives the Hero depth and a technical
+ * identity: atmospheric gradient fields behind both columns, a soft layered
+ * glow behind the portrait, orbital ring outlines and a grounded portrait
+ * shadow. Everything is decorative only — `pointer-events: none` and a
+ * negative z-index keep it behind the hero content.
+ */
+
+.hero-glow-core {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgb(var(--bg-tech-core) / 0.26),
+    transparent 64%
+  );
+}
+
+.hero-glow-cool {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgb(var(--bg-tech-cool) / 0.2),
+    transparent 64%
+  );
+}
+
+/*
+ * Layered halo that sits directly behind the profile frame. Two tonally
+ * distinct fields (cool on top, core green below) so the portrait reads as a
+ * lit subject inside the technical environment instead of a floating image.
+ */
+.hero-glow-portrait {
+  background:
+    radial-gradient(55% 46% at 42% 20%, rgb(var(--bg-tech-cool) / 0.32), transparent 72%),
+    radial-gradient(62% 56% at 60% 84%, rgb(var(--bg-tech-core) / 0.34), transparent 72%);
+  filter: blur(28px);
+}
+
+/*
+ * Grounded, premium portrait shadow: a crisp contact shadow plus a cool-toned
+ * ambient lift so the frame feels seated in the scene rather than pasted on.
+ */
+.hero-portrait-shadow {
+  box-shadow:
+    0 1px 1px rgb(0 0 0 / 0.03),
+    0 18px 40px -20px rgb(var(--bg-tech-line) / 0.3),
+    0 10px 26px -18px rgb(var(--bg-tech-cool) / 0.42);
+}
+
+/*
+ * Thin technical accent line along the base of the portrait frame. Uses the
+ * existing cool/violet atmosphere tokens so it stays a restrained detail.
+ */
+.hero-edge-accent {
+  background: linear-gradient(
+    90deg,
+    rgb(var(--bg-tech-core) / 0.9),
+    rgb(var(--bg-tech-cool) / 0.9) 52%,
+    rgb(var(--bg-tech-violet) / 0.85)
+  );
+}
+
+/*
+ * Soft seat vignette at the base of the photo so the subject connects to the
+ * frame instead of floating against its edges. Deliberately faint.
+ */
+.hero-photo-vignette {
+  background: linear-gradient(to top, rgb(0 0 0 / 0.1), transparent 42%);
+}

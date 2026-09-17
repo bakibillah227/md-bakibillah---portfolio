@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   ArrowRight,
   Terminal,
@@ -14,6 +14,7 @@ import { Button } from '../components/common/Button';
 import { TechTicker } from '../components/common/TechTicker';
 import { scrollToSection } from '../utils/helpers';
 import { staggerContainer, fadeUpItem, isReducedMotionEnabled } from '../utils/motion';
+import './hero.css';
 
 const identities = [
   'Software Engineer',
@@ -23,6 +24,27 @@ const identities = [
 ];
 
 const TILT_MAX_DEG = 6;
+
+const capabilities = [
+  {
+    icon: Layers,
+    title: 'Full-Stack MERN',
+    accent: 'text-accent-green',
+    text: 'End-to-end web applications with React frontend and structured Node/Express APIs.'
+  },
+  {
+    icon: Database,
+    title: 'Backend & REST APIs',
+    accent: 'text-accent-orange',
+    text: 'Schema modeling, MongoDB queries, authentication workflows, and modular architectures.'
+  },
+  {
+    icon: Terminal,
+    title: 'CS Fundamentals',
+    accent: 'text-text-primary',
+    text: 'Active focus on Data Structures, Algorithms, clean SOLID design, and scalable systems.'
+  }
+];
 
 export const Hero: React.FC = () => {
   const [identityIndex, setIdentityIndex] = useState(0);
@@ -61,12 +83,17 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative pt-6 pb-12 sm:pt-12 sm:pb-16 lg:pt-16 lg:pb-20 overflow-hidden"
+      className="relative pt-6 pb-12 sm:pt-12 sm:pb-16 lg:pt-20 lg:pb-24 overflow-hidden"
       aria-label="Hero Introduction"
     >
-      {/* Subtle background ambient texture */}
-      <div className="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center">
-        <div className="w-[500px] h-[300px] sm:w-[700px] sm:h-[450px] bg-accent-green/3 dark:bg-accent-green/5 rounded-full blur-3xl" />
+      {/* Layer: background atmosphere — static technical environment */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none -z-10 overflow-hidden"
+      >
+        <div className="hero-glow-core w-[640px] h-[420px] left-1/2 -translate-x-1/2 top-4 blur-3xl" />
+        <div className="hero-glow-cool w-[520px] h-[380px] -left-44 bottom-0 blur-3xl" />
+        <div className="hero-glow-cool w-[460px] h-[400px] -right-52 top-10 blur-3xl" />
       </div>
 
       <Container size="lg">
@@ -77,20 +104,24 @@ export const Hero: React.FC = () => {
           className="space-y-10 sm:space-y-12"
         >
           {/* Main 2-Column Hero Structure */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left Column: Text & CTAs (7 Cols) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            {/* Left Column: Text & CTA (7 Cols) */}
             <div className="lg:col-span-7 flex flex-col items-start text-left">
               {/* 1. Location Badge */}
               <motion.div variants={fadeUpItem} className="mb-6">
-                <div className="inline-flex items-center gap-1.5 text-xs text-text-secondary font-mono bg-surface-secondary/80 border border-border-subtle px-3 py-1 rounded-full shadow-2xs">
+                <div className="inline-flex items-center gap-2 text-xs text-text-secondary font-mono bg-surface-secondary/80 border border-border-subtle px-3 py-1 rounded-full shadow-2xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent-green" />
                   <MapPin className="w-3.5 h-3.5 text-accent-green" />
-                  <span>{personalData.location.city}, {personalData.location.country}</span>
+                  <span>
+                    {personalData.location.city}, {personalData.location.country}
+                  </span>
+                  <span className="opacity-50">· UTC+6</span>
                 </div>
               </motion.div>
 
               {/* 2. Professional Identity & Headline with Rotating Text */}
               <motion.div variants={fadeUpItem} className="space-y-3 mb-6 w-full">
-                <h1 className="text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-text-primary leading-[1.12]">
+                <h1 className="text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-text-primary leading-[1.12] text-balance">
                   Hi, I'm <span className="text-text-primary">{personalData.name}</span>.
                 </h1>
 
@@ -114,16 +145,13 @@ export const Hero: React.FC = () => {
               {/* 3. Concise Value Proposition */}
               <motion.p
                 variants={fadeUpItem}
-                className="text-base sm:text-lg text-text-secondary leading-relaxed max-w-2xl mb-8 font-normal"
+                className="text-base sm:text-lg text-text-secondary leading-relaxed max-w-xl mb-8 font-normal"
               >
                 I build scalable, reliable, user-focused web applications using modern JavaScript technologies, with a growing focus on backend engineering, system design, and AI-powered products.
               </motion.p>
 
               {/* 4. Action CTA: View Projects Only */}
-              <motion.div
-                variants={fadeUpItem}
-                className="mb-8"
-              >
+              <motion.div variants={fadeUpItem} className="mb-8">
                 <Button
                   variant="primary"
                   size="lg"
@@ -143,10 +171,10 @@ export const Hero: React.FC = () => {
               </motion.div>
             </div>
 
-            {/* Right Column: Modestly Enlarged Professional Profile Image Container (5 Cols) */}
+            {/* Right Column: Layered Profile Composition (5 Cols) */}
             <motion.div
               variants={fadeUpItem}
-              className="lg:col-span-5 flex items-center justify-center lg:justify-end"
+              className="lg:col-span-5 flex items-center justify-center"
             >
               <div
                 ref={portraitRef}
@@ -155,15 +183,41 @@ export const Hero: React.FC = () => {
                 style={{
                   transform: `perspective(900px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`
                 }}
-                className="relative group w-full max-w-[290px] sm:max-w-[350px] lg:max-w-[390px] xl:max-w-[420px] transition-transform duration-300 ease-out will-change-transform motion-reduce:transform-none"
+                className="relative group w-full max-w-[290px] sm:max-w-[340px] lg:max-w-[380px] xl:max-w-[400px] transition-transform duration-300 ease-out will-change-transform motion-reduce:transform-none"
               >
-                {/* Clean framing card */}
-                <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-border-strong/80 bg-surface-card shadow-xs group-hover:border-border-strong transition-all duration-300 aspect-[3/4] [transform-style:preserve-3d]">
+                {/* Atmospheric halo behind the portrait */}
+                <div
+                  aria-hidden="true"
+                  className="hero-glow-portrait absolute -inset-5 sm:-inset-7 rounded-[3rem] opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                />
+
+                {/* Orbital technical rings */}
+                <div
+                  aria-hidden="true"
+                  className="absolute -top-12 -right-10 hidden sm:block w-44 h-44 rounded-full border border-dashed border-border-strong/50"
+                />
+                <div
+                  aria-hidden="true"
+                  className="absolute -bottom-10 -left-10 hidden sm:block w-36 h-36 rounded-full border border-dashed border-accent-green/20"
+                />
+
+                {/* HUD corner brackets */}
+                <span
+                  aria-hidden="true"
+                  className="absolute -top-1 -left-1 z-10 h-5 w-5 rounded-tl-lg border-l-2 border-t-2 border-accent-green/60"
+                />
+                <span
+                  aria-hidden="true"
+                  className="absolute -bottom-1 -right-1 z-10 h-5 w-5 rounded-br-lg border-r-2 border-b-2 border-accent-green/60"
+                />
+
+                {/* Softly rounded portrait frame */}
+                <div className="relative rounded-[1.75rem] overflow-hidden border border-border-strong/80 bg-surface-card ring-1 ring-border-strong/40 hero-portrait-shadow aspect-[3/4] [transform-style:preserve-3d]">
                   {personalData.avatarUrl ? (
                     <img
                       src={personalData.avatarUrl}
                       alt={`Portrait of ${personalData.name}`}
-                      className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-[1.02] [transform:translateZ(0)]"
+                      className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.03] [transform:translateZ(0)]"
                       referrerPolicy="no-referrer"
                     />
                   ) : (
@@ -171,50 +225,49 @@ export const Hero: React.FC = () => {
                       MB
                     </div>
                   )}
+
+                  {/* Technical base accent + grounding vignette */}
+                  <div
+                    aria-hidden="true"
+                    className="hero-edge-accent absolute bottom-0 inset-x-0 h-[3px]"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="hero-photo-vignette absolute inset-0"
+                  />
+                </div>
+
+                {/* Floating console chip */}
+                <div
+                  aria-hidden="true"
+                  className="absolute -bottom-4 -left-3 sm:-left-6 z-10 flex items-center gap-2 rounded-lg border border-border-strong bg-surface-card/95 px-3 py-1.5 shadow-lg backdrop-blur-sm"
+                >
+                  <span className="flex items-center gap-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent-orange/80" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent-green/80" />
+                  </span>
+                  <span className="font-mono text-[11px] font-medium tracking-tight text-text-secondary leading-none">
+                    $ npm run portfolio
+                  </span>
                 </div>
               </div>
             </motion.div>
           </div>
 
-          {/* 6. Subtle Credibility & Engineering Focus Strip */}
-          <motion.div
-            variants={fadeUpItem}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-4"
-          >
-            <div className="p-4 rounded-xl bg-surface-secondary/50 border border-border-subtle hover:border-border-strong hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200 motion-reduce:transform-none">
-              <div className="flex items-center gap-2 mb-1.5">
-                <Layers className="w-4 h-4 text-accent-green" />
-                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-text-primary">
-                  Full-Stack MERN
-                </span>
-              </div>
-              <p className="text-xs text-text-secondary leading-relaxed">
-                End-to-end web applications with React frontend and structured Node/Express APIs.
-              </p>
-            </div>
-
-            <div className="p-4 rounded-xl bg-surface-secondary/50 border border-border-subtle hover:border-border-strong hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200 motion-reduce:transform-none">
-              <div className="flex items-center gap-2 mb-1.5">
-                <Database className="w-4 h-4 text-accent-orange" />
-                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-text-primary">
-                  Backend & REST APIs
-                </span>
-              </div>
-              <p className="text-xs text-text-secondary leading-relaxed">
-                Schema modeling, MongoDB queries, authentication workflows, and modular architectures.
-              </p>
-            </div>
-
-            <div className="p-4 rounded-xl bg-surface-secondary/50 border border-border-subtle hover:border-border-strong hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200 motion-reduce:transform-none">
-              <div className="flex items-center gap-2 mb-1.5">
-                <Terminal className="w-4 h-4 text-text-primary" />
-                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-text-primary">
-                  CS Fundamentals
-                </span>
-              </div>
-              <p className="text-xs text-text-secondary leading-relaxed">
-                Active focus on Data Structures, Algorithms, clean SOLID design, and scalable systems.
-              </p>
+          {/* 6. Engineering Focus Strip — cohesive technical band */}
+          <motion.div variants={fadeUpItem} className="w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-3 rounded-2xl border border-border-subtle bg-surface-secondary/40 shadow-2xs sm:divide-x sm:divide-border-subtle overflow-hidden">
+              {capabilities.map((cap) => (
+                <div key={cap.title} className="p-4 sm:p-5">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <cap.icon className={`w-4 h-4 ${cap.accent}`} />
+                    <span className="text-xs font-mono font-semibold uppercase tracking-wider text-text-primary">
+                      {cap.title}
+                    </span>
+                  </div>
+                  <p className="text-xs text-text-secondary leading-relaxed">{cap.text}</p>
+                </div>
+              ))}
             </div>
           </motion.div>
         </motion.div>
