@@ -14,6 +14,7 @@ import { Button } from '../components/common/Button';
 import { TechTicker } from '../components/common/TechTicker';
 import { scrollToSection } from '../utils/helpers';
 import { staggerContainer, fadeUpItem, isReducedMotionEnabled } from '../utils/motion';
+import { HeroEnvironment } from '../components/background/HeroEnvironment';
 import './hero.css';
 
 const identities = [
@@ -95,6 +96,9 @@ export const Hero: React.FC = () => {
         <div className="hero-glow-cool w-[520px] h-[380px] -left-44 bottom-0 blur-3xl" />
         <div className="hero-glow-cool w-[460px] h-[400px] -right-52 top-10 blur-3xl" />
       </div>
+
+      {/* Layer: animated technical environment — depth-layered, behind content */}
+      <HeroEnvironment />
 
       <Container size="lg">
         <motion.div

@@ -1,0 +1,164 @@
+/*
+ * Hero technical environment
+ *
+ * A deliberately composed, hero-scoped technical scene layered between the
+ * page atmosphere and the hero content. Three conceptual depth layers (far /
+ * mid / near) hold a small number of meaningful objects — node networks,
+ * wireframe geometry, orbital rings and atmospheric fields — rather than a
+ * large particle field.
+ *
+ * Everything here is decorative: the root ignores pointer events, clips to the
+ * hero bounds (no horizontal overflow) and sits behind the content. Object
+ * motion is pure CSS (transform/opacity only); pointer parallax is written to
+ * the three `.hero-env-layer` wrappers by `usePointerParallax`.
+ *
+ * All continuous motion is gated behind `prefers-reduced-motion: no-preference`
+ * so reduced-motion users get a calm but still fully designed static scene.
+ */
+
+.hero-env {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-env-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.hero-object {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------
+ * Atmospheric fields
+ * ------------------------------------------------------------------------- */
+
+.hero-env-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(48px);
+  opacity: var(--hero-op, 0.7);
+}
+
+.hero-env-glow--core {
+  background: radial-gradient(circle at 50% 50%, rgb(var(--bg-tech-core) / 0.38), transparent 68%);
+}
+
+.hero-env-glow--cool {
+  background: radial-gradient(circle at 50% 50%, rgb(var(--bg-tech-cool) / 0.3), transparent 68%);
+}
+
+.hero-env-glow--violet {
+  background: radial-gradient(circle at 50% 50%, rgb(var(--bg-tech-violet) / 0.24), transparent 68%);
+}
+
+/* ---------------------------------------------------------------------------
+ * Token color helpers — map atmosphere tokens onto `currentColor` so SVG
+ * strokes/fills and HTML borders/dots resolve themed colors automatically.
+ * ------------------------------------------------------------------------- */
+
+.hero-c-core {
+  color: rgb(var(--bg-tech-core));
+}
+
+.hero-c-cool {
+  color: rgb(var(--bg-tech-cool));
+}
+
+.hero-c-violet {
+  color: rgb(var(--bg-tech-violet));
+}
+
+.hero-c-line {
+  color: rgb(var(--bg-tech-line));
+}
+
+.hero-node-glow {
+  filter: drop-shadow(0 0 5px currentColor);
+}
+
+/* ---------------------------------------------------------------------------
+ * Breathing (subtle opacity) — per-mode intensity via a custom property
+ * ------------------------------------------------------------------------- */
+
+.hero-breathe {
+  opacity: var(--hero-op, 0.4);
+}
+
+.dark .hero-breathe {
+  --hero-op: 0.55;
+}
+
+/* ---------------------------------------------------------------------------
+ * Motion — only when the user allows it
+ * ------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-float {
+    animation: hero-float var(--hero-dur, 18s) ease-in-out infinite;
+    animation-delay: var(--hero-delay, 0s);
+  }
+
+  .hero-rotate {
+    animation: hero-rotate var(--hero-spin, 52s) linear infinite;
+    animation-delay: var(--hero-delay, 0s);
+    transform-origin: center;
+  }
+
+  .hero-rotate--rev {
+    animation-direction: reverse;
+  }
+
+  .hero-breathe {
+    animation: hero-breathe var(--hero-breath, 10s) ease-in-out infinite;
+  }
+
+  .hero-env-glow {
+    animation: hero-glow-drift var(--hero-dur, 26s) ease-in-out infinite alternate;
+  }
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -11px, 0);
+  }
+}
+
+@keyframes hero-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hero-breathe {
+  0%,
+  100% {
+    opacity: var(--hero-op, 0.4);
+  }
+  50% {
+    opacity: calc(var(--hero-op, 0.4) * 0.5);
+  }
+}
+
+@keyframes hero-glow-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(2.5%, -3%, 0) scale(1.14);
+  }
+}
